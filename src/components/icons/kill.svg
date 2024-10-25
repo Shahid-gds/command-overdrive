@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="31.08" height="28.588" viewBox="0 0 36.77 48.485">
+  <g id="Group_297" data-name="Group 297" transform="translate(-335.755 -350.793)">
+    <g id="Group_296" data-name="Group 296">
+      <g id="iconfinder-bl-1641-engine-development-magnifier-search-fix-motor-car0a-4575052_121502" transform="translate(337.27 357.44)">
+        <g id="Group_94" data-name="Group 94" transform="translate(0.01 1.013)">
+          <line id="Line_81" data-name="Line 81" y2="7.795" transform="translate(30.315 14.724)" fill="none" stroke="#d63d4a" stroke-miterlimit="10" stroke-width="2"/>
+          <line id="Line_82" data-name="Line 82" y2="7.795" transform="translate(26.85 14.724)" fill="none" stroke="#d63d4a" stroke-miterlimit="10" stroke-width="2"/>
+          <line id="Line_83" data-name="Line 83" x2="3.465" transform="translate(0 15.59)" fill="none" stroke="#d63d4a" stroke-miterlimit="10" stroke-width="2"/>
+          <line id="Line_84" data-name="Line 84" y1="6.929" transform="translate(0.866 8.661)" fill="none" stroke="#d63d4a" stroke-miterlimit="10" stroke-width="2"/>
+          <line id="Line_85" data-name="Line 85" x2="14.984" transform="translate(6.621 6.958)" fill="none" stroke="#d63d4a" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"/>
+          <line id="Line_86" data-name="Line 86" y2="6.063" transform="translate(0.866 15.59)" fill="none" stroke="#d63d4a" stroke-miterlimit="10" stroke-width="2"/>
+          <path id="Path_232" data-name="Path 232" d="M21.032,28.3H28.7V24.817h2.788V28.3h1.742a40.291,40.291,0,0,0,0-18.12H31.492v3.485H28.7V10.878a1.394,1.394,0,0,0-1.394-1.394h-.7L23.478,6H11.63L8.494,9.485H6.4A1.394,1.394,0,0,0,5.01,10.878V24.12H7.8L10.585,28.3h4.872" transform="translate(-1.525 -2.526)" fill="none" stroke="#d63d4a" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"/>
+          <line id="Line_87" data-name="Line 87" x2="1.732" transform="translate(5.197 9.527)" fill="none" stroke="#d63d4a" stroke-miterlimit="10" stroke-width="2"/>
+          <line id="Line_88" data-name="Line 88" x2="11.26" transform="translate(10.394 0)" fill="none" stroke="#d63d4a" stroke-miterlimit="10" stroke-width="2"/>
+          <line id="Line_89" data-name="Line 89" y2="3.465" transform="translate(12.126 0)" fill="none" stroke="#d63d4a" stroke-miterlimit="10" stroke-width="2"/>
+          <line id="Line_90" data-name="Line 90" y2="3.465" transform="translate(19.921 0)" fill="none" stroke="#d63d4a" stroke-miterlimit="10" stroke-width="2"/>
+        </g>
+        <circle id="Ellipse_24" data-name="Ellipse 24" cx="6.496" cy="6.496" r="6.496" transform="translate(10.403 11.406)" fill="none" stroke="#d63d4a" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"/>
+        <line id="Line_91" data-name="Line 91" y2="8.661" transform="translate(16.466 24.398)" fill="none" stroke="#d63d4a" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      </g>
+    </g>
+    <g id="Path_238" data-name="Path 238" transform="translate(339.92 356.636) rotate(-34)" fill="#d63d4a">
+      <path d="M 4.5 47.91273880004883 L 3 47.91273880004883 L -2.220446049250313e-16 47.91273880004883 L -1.5 47.91273880004883 L -1.5 46.41273880004883 L -1.5 -5.99975578552403e-07 L -1.5 -1.500000596046448 L -2.220446049250313e-16 -1.500000596046448 L 3 -1.500000596046448 L 4.5 -1.500000596046448 L 4.5 -5.99975578552403e-07 L 4.5 46.41273880004883 L 4.5 47.91273880004883 Z" stroke="none"/>
+      <path d="M 0 0 L 0 46.41273880004883 L 3 46.41273880004883 L 3 0 L 0 0 M -3 -3 L 6 -3 L 6 49.41273880004883 L -3 49.41273880004883 L -3 -3 Z" stroke="none" fill="#fff"/>
+    </g>
+  </g>
+</svg>
