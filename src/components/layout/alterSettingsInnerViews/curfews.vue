@@ -48,21 +48,21 @@
                           <div class="w-full p-3 px-4 ">Sat</div>
                         </div>
                       </div>
-                      <div class="pt-6 flex justify-between items-center space-x-2">
-                       <div>
+                      <div class="timing pt-6 flex justify-between items-center space-x-2">
+                       <div class="start-time">
                         <div class="font-[700] text-[16px] uppercase pb-3">START TIME</div>
-                        <div>
-                          <input type="text" class="border-2 p-2 px-4 rounded-lg outline-none text-[#979797] text-[18px] font-[500]" v-model="startTime">
+                        <div start-time>
+                          <input type="text" class="start-time border-2 p-2 px-4 rounded-lg outline-none text-[#979797] text-[18px] font-[500]" v-model="startTime">
                         </div>
                        </div>
                        <div>
-                        <div class="pb-12"></div>
-                        <div class="text-[18px] p-2">To</div>
+                        <div class="to-extra pb-12"></div>
+                        <div class="to text-[18px] p-2">To</div>
                        </div>
-                       <div>
+                       <div class="end-time">
                         <div class="font-[700] text-[16px] uppercase pb-3">End TIME</div>
-                        <div>
-                          <input type="text" class="border-2 p-2 px-4 rounded-lg outline-none text-[#979797] text-[18px] font-[500]" v-model="endTime">
+                        <div class="end-time">
+                          <input type="text" class="end-time border-2 p-2 px-4 rounded-lg outline-none text-[#979797] text-[18px] font-[500]" v-model="endTime">
                         </div>
                        </div>
                       </div>
@@ -269,142 +269,95 @@
   
   <style scoped>
   .knobs,
-    .layer, .layer-red {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-    }
-    
-    .button {
-      position: relative;
-      width: 100px;
-      height: 36px;
-      overflow: hidden;
-    }
-    .button-red {
-      position: relative;
-      width: 100px;
-      height: 36px;
-      overflow: hidden;
-    }
-    
-    .checkbox {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      padding: 0;
-      margin: 0;
-      opacity: 0;
-      cursor: pointer;
-      z-index: 3;
-    }
-    
-    .knobs {
-      z-index: 2;
-    }
-    
-    .layer {
-      width: 100%;
-      background-color: #DCDCDC;
-      transition: 0.3s ease all;
-      z-index: 1;
-      border-radius: 20px;
-    }
-    .layer-red {
-      width: 100%;
-      background-color: #D63D4A;
-      transition: 0.3s ease all;
-      z-index: 1;
-      border-radius: 20px;
-    }
-    
-    #button-13 .knobs:before,
-    #button-13 .knobs:after,
-    #button-13 .knobs span,
-    #button-14 .knobs:before,
-    #button-14 .knobs:after,
-    #button-14 .knobs span {
-      position: absolute;
-      top: 4px;
-      width: 20px;
-      height: 10px;
-      font-size: 10px;
-      font-weight: bold;
-      text-align: center;
-      line-height: 1;
-      padding: 7px 4px;
-      border-radius: 2px;
-      transition: 0.3s ease all;
-    }
-    
-    #button-13 .knobs:before,
-    #button-13 .knobs:after,
-    #button-14 .knobs:before,
-    #button-14 .knobs:after {
-      z-index: 1;
-    }
-    
-    #button-13 .knobs:before {
-      content: "ON";
-      left: 4px;
-      color: #8E8E8E;
-      font-size: 16px;
-    }
-    #button-14 .knobs:before {
-      content: "ON";
-      left: 4px;
-      color: white;
-      font-size: 16px;
-    }
-    
-    #button-13 .knobs:after {
-      content: "OFF";
-      right: -72px;
-      color: #8E8E8E;
-      font-size: 16px;
-    }
-    #button-14 .knobs:after {
-      content: "OFF";
-      right: -72px;
-      color: white;
-      font-size: 16px;
-    }
-    
-    #button-13 .knobs span {
-      width: 40px;
-      height: 27px;
-      left: 55px;
-      background-color: #ffffff;
-      z-index: 2;
-      border-radius: 20px;
-    }
-    #button-14 .knobs span {
-      width: 40px;
-      height: 27px;
-      left: 55px;
-      background-color: #ffffff;
-      z-index: 2;
-      border-radius: 20px;
-    }
-    
-    #button-13 .checkbox:checked + .knobs span,
-    #button-14 .checkbox:checked + .knobs span
-     {
-      left: 5px;
-      background-color: #ffffff;
-      border-radius: 20px;
-    }
-    
-    #button-13 .checkbox:checked ~ .layer {
-      background-color: #DCDCDC;
-    }
-    #button-14 .checkbox:checked ~ .layer-red {
-      background-color: #DCDCDC;
-    }
-    
-    #button-14 .checkbox:checked ~ .layer-red {
-      background-color: #D63D4A;
-    }
+  .layer {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+  }
+  
+  .button {
+    position: relative;
+    width: 100px;
+    height: 36px;
+    overflow: hidden;
+  }
+  
+  .checkbox {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 3;
+  }
+  
+  .knobs {
+    z-index: 2;
+  }
+  
+  .layer {
+    width: 100%;
+    background-color: #D63D4A;
+    transition: 0.3s ease all;
+    z-index: 1;
+    border-radius: 20px;
+  }
+  
+  #button-13 .knobs:before,
+  #button-13 .knobs:after,
+  #button-13 .knobs span {
+    position: absolute;
+    top: 4px;
+    width: 20px;
+    height: 10px;
+    font-size: 10px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1;
+    padding: 7px 4px;
+    border-radius: 2px;
+    transition: 0.3s ease all;
+  }
+  
+  #button-13 .knobs:before,
+  #button-13 .knobs:after {
+    z-index: 1;
+  }
+  
+  #button-13 .knobs:before {
+    content: "ON";
+    left: 4px;
+    color: white;
+    font-size: 16px;
+  }
+  
+  #button-13 .knobs:after {
+    content: "OFF";
+    right: -72px;
+    color: #8E8E8E;
+    font-size: 16px;
+  }
+  
+  #button-13 .knobs span {
+    width: 40px;
+    height: 27px;
+    left: 55px;
+    background-color: #ffffff;
+    z-index: 2;
+    border-radius: 20px;
+  }
+  
+  #button-13 .checkbox:checked + .knobs span {
+    left: 5px;
+    background-color: #ffffff;
+    border-radius: 20px;
+  }
+  
+  #button-13 .checkbox:checked ~ .layer {
+    background-color: #DCDCDC;
+  }
   .dropdown-enter-active,
   .dropdown-leave-active {
     transition: opacity 0.3s ease, transform 0.3s ease;
@@ -414,4 +367,21 @@
     opacity: 0;
     transform: translateY(-10px);
   }
+  @media(max-width:1900px){
+    .timing {
+     flex-direction: column;
+    }
+    .start-time{
+     width: 100%;
+    }
+    .end-time{
+     width: 100%;
+    }
+    .to {
+    display: none;
+    }
+    .to-extra {
+    padding-bottom: 20px;
+    }
+   }
   </style>

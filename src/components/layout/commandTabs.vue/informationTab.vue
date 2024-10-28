@@ -1,6 +1,6 @@
 <template>
     <section class="">
-        <div class="max-h-[90vh] overflow-y-scroll pr-4 pb-[6rem] mt-6">
+        <div class="screen-height max-h-[80vh] overflow-y-scroll pr-4 mt-6">
            <div class="flex justify-between items-center border-b-[1px] pb-4 border-[#9F9F9F]" >
             <div class="uppercase font-[700]">Vehicle Details</div>
             <div class="flex items-center cursor-pointer">
@@ -202,5 +202,10 @@
   ::-webkit-scrollbar-thumb {
     background-color: #C1C1C1;
     border-radius: 5px;
+  }
+  @media(max-width:1900px){
+    .screen-height {
+        height: 75vh;
+    }
   }
 </style>

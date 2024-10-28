@@ -1,5 +1,5 @@
 <template> 
-  <section class="p-2 border-t-[1px] border-[#707070]">
+  <section class="details-tab p-2 border-t-[1px] border-[#707070]">
       <div class="w-full">
           <div class="flex space-x-10 h-[300px]">
           <div class="w-full">
@@ -148,8 +148,9 @@ const address = ref('5926 AMBASSADOR WAY ALEXANDRIA VA, 22310, US')
 
 </script>
 
-<style>
+<style scoped>
 textarea {
  resize: none;
 }
+
 </style>

@@ -327,7 +327,7 @@ function rgbToHex(rgb) {
   #button-13 .knobs:after {
     content: "OFF";
     right: -72px;
-    color: white;
+    color: #8E8E8E;
     font-size: 16px;
   }
   
@@ -347,7 +347,7 @@ function rgbToHex(rgb) {
   }
   
   #button-13 .checkbox:checked ~ .layer {
-    background-color: #D63D4A;
+    background-color: #DCDCDC;
   }
   
   .slider-container {

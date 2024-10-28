@@ -274,7 +274,7 @@
   
   .layer {
     width: 100%;
-    background-color: #d63d4a;
+    background-color: #D63D4A;
     transition: 0.3s ease all;
     z-index: 1;
     border-radius: 20px;
@@ -310,8 +310,8 @@
   
   #button-13 .knobs:after {
     content: "OFF";
-    right: -75px;
-    color: white;
+    right: -72px;
+    color: #8E8E8E;
     font-size: 16px;
   }
   
@@ -331,11 +331,7 @@
   }
   
   #button-13 .checkbox:checked ~ .layer {
-    background-color: #d63d4a;
-  }
-  .dropdown-enter-active,
-  .dropdown-leave-active {
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    background-color: #DCDCDC;
   }
   .dropdown-enter-from,
   .dropdown-leave-to {

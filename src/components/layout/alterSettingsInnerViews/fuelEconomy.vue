@@ -204,95 +204,95 @@ const minValue = 0;
   
   <style scoped>
   .knobs,
-    .layer {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-    }
-    
-    .button {
-      position: relative;
-      width: 100px;
-      height: 36px;
-      overflow: hidden;
-    }
-    
-    .checkbox {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      padding: 0;
-      margin: 0;
-      opacity: 0;
-      cursor: pointer;
-      z-index: 3;
-    }
-    
-    .knobs {
-      z-index: 2;
-    }
-    
-    .layer {
-      width: 100%;
-      background-color: #DCDCDC;
-      transition: 0.3s ease all;
-      z-index: 1;
-      border-radius: 20px;
-    }
-    
-    #button-13 .knobs:before,
-    #button-13 .knobs:after,
-    #button-13 .knobs span {
-      position: absolute;
-      top: 4px;
-      width: 20px;
-      height: 10px;
-      font-size: 10px;
-      font-weight: bold;
-      text-align: center;
-      line-height: 1;
-      padding: 7px 4px;
-      border-radius: 2px;
-      transition: 0.3s ease all;
-    }
-    
-    #button-13 .knobs:before,
-    #button-13 .knobs:after {
-      z-index: 1;
-    }
-    
-    #button-13 .knobs:before {
-      content: "ON";
-      left: 4px;
-      color: #8E8E8E;
-      font-size: 16px;
-    }
-    
-    #button-13 .knobs:after {
-      content: "OFF";
-      right: -72px;
-      color: #8E8E8E;
-      font-size: 16px;
-    }
-    
-    #button-13 .knobs span {
-      width: 40px;
-      height: 27px;
-      left: 55px;
-      background-color: #ffffff;
-      z-index: 2;
-      border-radius: 20px;
-    }
-    
-    #button-13 .checkbox:checked + .knobs span {
-      left: 5px;
-      background-color: #ffffff;
-      border-radius: 20px;
-    }
-    
-    #button-13 .checkbox:checked ~ .layer {
-      background-color: #DCDCDC;
-    }
+  .layer {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+  }
+  
+  .button {
+    position: relative;
+    width: 100px;
+    height: 36px;
+    overflow: hidden;
+  }
+  
+  .checkbox {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 3;
+  }
+  
+  .knobs {
+    z-index: 2;
+  }
+  
+  .layer {
+    width: 100%;
+    background-color: #D63D4A;
+    transition: 0.3s ease all;
+    z-index: 1;
+    border-radius: 20px;
+  }
+  
+  #button-13 .knobs:before,
+  #button-13 .knobs:after,
+  #button-13 .knobs span {
+    position: absolute;
+    top: 4px;
+    width: 20px;
+    height: 10px;
+    font-size: 10px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1;
+    padding: 7px 4px;
+    border-radius: 2px;
+    transition: 0.3s ease all;
+  }
+  
+  #button-13 .knobs:before,
+  #button-13 .knobs:after {
+    z-index: 1;
+  }
+  
+  #button-13 .knobs:before {
+    content: "ON";
+    left: 4px;
+    color: white;
+    font-size: 16px;
+  }
+  
+  #button-13 .knobs:after {
+    content: "OFF";
+    right: -72px;
+    color: #8E8E8E;
+    font-size: 16px;
+  }
+  
+  #button-13 .knobs span {
+    width: 40px;
+    height: 27px;
+    left: 55px;
+    background-color: #ffffff;
+    z-index: 2;
+    border-radius: 20px;
+  }
+  
+  #button-13 .checkbox:checked + .knobs span {
+    left: 5px;
+    background-color: #ffffff;
+    border-radius: 20px;
+  }
+  
+  #button-13 .checkbox:checked ~ .layer {
+    background-color: #DCDCDC;
+  }
     .slider-container {
         position: relative;
         height: 50px;

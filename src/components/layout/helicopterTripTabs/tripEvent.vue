@@ -1,5 +1,5 @@
 <template>
-    <section class="p-2 border-t-[1px] border-[#707070] pt-8">
+    <section class="event-tab p-2 border-t-[1px] border-[#707070] pt-8">
             <div class="flex items-center space-x-4 border-b-2 pb-4 border-[#D4D4D4]">
               <div>
                 <div class="border-2 p-3 border-[#D63D4A] rounded-full w-[50px] h-[50px] pt-2.5">
@@ -74,3 +74,9 @@
             </div>
     </section>
 </template>
+
+<style scoped>
+
+
+
+</style>

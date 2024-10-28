@@ -11,9 +11,9 @@
                 </div>
             </div>
             <div class="flex items-center space-x-4">
-                <div>
+                <router-link :to="{name: 'Installers'}">
                     <img src="@/components/icons/open-wrench-tool.svg" alt="">
-                </div>
+                </router-link>
                 <router-link :to="{name : 'AccountSettings'}">
                     <img src="@/components/icons/settings.svg" alt="">
                 </router-link>
@@ -40,17 +40,17 @@
                     : 'bg-[#FFFFFF] text-[#000]',
                   'cursor-pointer p-3 px-6 rounded-xl font-[400] uppercase hover:bg-[#D63D4A] hover:text-[#FFFFFF]',]"
                 @click="selectTab('alterDashboard')">
-                Alter Dashboard
+                Alerts Dashboard
               </div>
               <div
-                class="hover-btn w-[176px] text-center"
+                class="hover-btn w-[190px] text-center"
                 :class="[
                   selectedTab === 'alterSettings'
                     ? 'bg-[#D63D4A] text-[#FFFFFF] font-[600]'
                     : 'bg-[#FFFFFF] text-[#000]',
                   'cursor-pointer p-3 px-6 rounded-xl font-[400] uppercase hover:bg-[#D63D4A] transition-all duration-150 hover:text-[#FFFFFF]', ]"
                 @click="selectTab('alterSettings')">
-                Alter Settings
+                Alerts Settings
               </div>
             </div>
             <div>
@@ -97,9 +97,9 @@ const currentComponent = computed(() => {
 const breadcrumbText = computed(() => {
     switch (selectedTab.value) {
       case 'alterDashboard':
-        return 'Home / Alerts / Alter Dashboard'
+        return 'Home / Alerts / Alerts Dashboard'
       case 'alterSettings':
-        return 'Home / Alerts / Alter Settings'
+        return 'Home / Alerts / Alerts Settings'
       default:
         return 'Home / Alerts'
     }

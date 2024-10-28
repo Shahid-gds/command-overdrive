@@ -332,7 +332,7 @@ function rgbToHex(rgb) {
   
   .layer {
     width: 100%;
-    background-color: #d63d4a;
+    background-color: #D63D4A;
     transition: 0.3s ease all;
     z-index: 1;
     border-radius: 20px;
@@ -368,8 +368,8 @@ function rgbToHex(rgb) {
   
   #button-13 .knobs:after {
     content: "OFF";
-    right: -75px;
-    color: white;
+    right: -72px;
+    color: #8E8E8E;
     font-size: 16px;
   }
   
@@ -389,7 +389,7 @@ function rgbToHex(rgb) {
   }
   
   #button-13 .checkbox:checked ~ .layer {
-    background-color: #d63d4a;
+    background-color: #DCDCDC;
   }
   .slider-track {
     position: relative;

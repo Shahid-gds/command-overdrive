@@ -274,7 +274,7 @@
   
   .layer {
     width: 100%;
-    background-color: #DCDCDC;
+    background-color: #D63D4A;
     transition: 0.3s ease all;
     z-index: 1;
     border-radius: 20px;
@@ -304,13 +304,13 @@
   #button-13 .knobs:before {
     content: "ON";
     left: 4px;
-    color: #8E8E8E;
+    color: white;
     font-size: 16px;
   }
   
   #button-13 .knobs:after {
     content: "OFF";
-    right: -75px;
+    right: -72px;
     color: #8E8E8E;
     font-size: 16px;
   }

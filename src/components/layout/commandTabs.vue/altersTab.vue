@@ -21,7 +21,7 @@
               </TransitionGroup>
               </div>
         </div>
-        <div v-if="!isSettingsVisible" class="max-h-[90vh] overflow-y-scroll pr-4 pb-[6rem] mt-6 ">
+        <div v-if="!isSettingsVisible" class="screen-height max-h-[75vh] overflow-y-scroll pr-4 mt-6 ">
             <div class="flex space-x-4 border-b-2 pb-4 border-[#D4D4D4]">
               <div>
                 <div class="bg-[#D63D4A] p-2 rounded-full w-[50px] h-[50px] pt-2.5">
@@ -313,5 +313,10 @@ const showSettings = () => {
   ::-webkit-scrollbar-thumb {
     background-color: #C1C1C1;
     border-radius: 5px;
+  }
+  @media(max-width:1900px){
+    .screen-height {
+        height: 70vh;
+    }
   }
 </style>

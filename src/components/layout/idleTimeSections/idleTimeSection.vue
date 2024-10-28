@@ -145,13 +145,38 @@ function updatePercentages() {
     z-index: 3;
   }
   
+  .knobs,
+  .layer {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+  }
+  
+  .button {
+    position: relative;
+    width: 100px;
+    height: 36px;
+    overflow: hidden;
+  }
+  
+  .checkbox {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 3;
+  }
+  
   .knobs {
     z-index: 2;
   }
   
   .layer {
     width: 100%;
-    background-color: #d63d4a;
+    background-color: #D63D4A;
     transition: 0.3s ease all;
     z-index: 1;
     border-radius: 20px;
@@ -187,8 +212,8 @@ function updatePercentages() {
   
   #button-13 .knobs:after {
     content: "OFF";
-    right: -74px;
-    color: white;
+    right: -72px;
+    color: #8E8E8E;
     font-size: 16px;
   }
   
@@ -208,9 +233,8 @@ function updatePercentages() {
   }
   
   #button-13 .checkbox:checked ~ .layer {
-    background-color: #d63d4a;
+    background-color: #DCDCDC;
   }
-  
   .slider-container {
     position: relative;
     height: 50px;

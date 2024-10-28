@@ -56,7 +56,7 @@
             </button>
             <p class="text-center uppercase text-sm">Last Connected 25 Aug, 2024 01:30 pm</p>
           </div>
-        <div class="max-h-[500px] overflow-y-scroll pb-[4rem] pr-4 mt-6">
+        <div class="h-[43vh] screen-height overflow-y-scroll pr-4 mt-6">
             <div class="flex items-center justify-between">
                 <div>
                     <h1 class="uppercase font-[600] text-lg">Current Location:</h1>
@@ -146,5 +146,10 @@
   ::-webkit-scrollbar-thumb {
     background-color: #C1C1C1;
     border-radius: 5px;
+  }
+  @media(max-width:1900px){
+    .screen-height {
+        height: 38vh;
+    }
   }
 </style>

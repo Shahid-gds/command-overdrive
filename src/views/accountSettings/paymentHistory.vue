@@ -1,5 +1,5 @@
 <template> 
-    <section class="2x:flex 2xl:space-x-10">
+    <section class="2xl:flex 2xl:space-x-10">
         <div class="w-full 2xl:pb-0 pb-10">
             <div class="flex justify-between">
                 <div><h1 class="font-[700] uppercase text-xl pb-2">Payment History:</h1></div>

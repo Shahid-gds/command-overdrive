@@ -93,6 +93,12 @@ const router = createRouter({
       // meta: { layout: "Default" },
       component: () => import("@/pages/alters.vue"),
     },
+    {
+      path: "/installers",
+      name: "Installers",
+      // meta: { layout: "Default" },
+      component: () => import("@/pages/installers.vue"),
+    },
   ],
 });
 

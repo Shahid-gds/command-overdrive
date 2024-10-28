@@ -117,7 +117,12 @@
                   <div class="font-[600] uppercase">
                     {{ day.day }}
                   </div>
-                  <div>{{ day.totalMile }} Total Miles</div>
+                  <div class="flex items-center">
+                    <div>
+                    {{ day.totalMile }} Total Miles
+                  </div> 
+                  <div class="text-[24px] text-[#D63D4A] font-[600]">&#x3e;</div>
+                </div>
                 </div>
                 <div
                   v-for="(entry, entryIndex) in day.entries"

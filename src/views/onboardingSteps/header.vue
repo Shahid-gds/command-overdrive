@@ -10,9 +10,9 @@
             </div>
         </div>
         <div class="flex items-center space-x-4">
-            <div>
+            <router-link :to="{name: 'Installers'}">
                 <img src="@/components/icons/open-wrench-tool.svg" alt="">
-            </div>
+            </router-link>
             <rounter-link :to="{name : 'AccountSettings'}">
                 <img src="@/components/icons/settings.svg" alt="">
             </rounter-link>

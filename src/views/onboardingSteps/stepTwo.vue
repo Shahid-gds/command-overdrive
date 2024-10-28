@@ -35,6 +35,10 @@
             <input type="text" class="border-[1px] px-4 p-3 w-full outline-none border-[#989898] rounded-lg placeholder:text-[#808080]" placeholder="Model">
             <input type="text" class="border-[1px] px-4 p-3 w-full outline-none border-[#989898] rounded-lg placeholder:text-[#808080]" placeholder="Mileage">
           </div>
+          <div class="flex space-x-3 pb-2">
+            <input type="text" class="border-[1px] px-4 p-3 w-full outline-none border-[#989898] rounded-lg placeholder:text-[#808080]" placeholder="Year">
+            <input type="text" class="border-[1px] px-4 p-3 w-full outline-none border-[#989898] rounded-lg placeholder:text-[#808080]" placeholder="Nickname">
+          </div>
   
           <div class="flex space-x-3">
             <div class="w-full"></div>

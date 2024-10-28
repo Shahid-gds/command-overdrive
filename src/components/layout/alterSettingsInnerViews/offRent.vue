@@ -577,19 +577,13 @@ const isDropdownOpen = ref(false);
 
 <style scoped>
 .knobs,
-.layer, .layer-red {
+.layer {
   position: absolute;
   top: 0;
   bottom: 0;
 }
 
 .button {
-  position: relative;
-  width: 100px;
-  height: 36px;
-  overflow: hidden;
-}
-.button-red {
   position: relative;
   width: 100px;
   height: 36px;
@@ -612,13 +606,6 @@ const isDropdownOpen = ref(false);
 }
 
 .layer {
-  width: 100%;
-  background-color: #DCDCDC;
-  transition: 0.3s ease all;
-  z-index: 1;
-  border-radius: 20px;
-}
-.layer-red {
   width: 100%;
   background-color: #D63D4A;
   transition: 0.3s ease all;
@@ -650,7 +637,7 @@ const isDropdownOpen = ref(false);
 #button-13 .knobs:before {
   content: "ON";
   left: 4px;
-  color: #8E8E8E;
+  color: white;
   font-size: 16px;
 }
 
@@ -670,7 +657,7 @@ const isDropdownOpen = ref(false);
   border-radius: 20px;
 }
 
-#button-13 .checkbox:checked + .knobs span{
+#button-13 .checkbox:checked + .knobs span {
   left: 5px;
   background-color: #ffffff;
   border-radius: 20px;

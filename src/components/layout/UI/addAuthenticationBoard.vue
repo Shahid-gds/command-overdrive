@@ -7,9 +7,9 @@
               </div>
             <h1 class="text-[#b92a32] text-[36px] font-[700] uppercase text-center">Add Authentication</h1>
             <p class="text-[#000000] font-[400] pb-4 text-center">Lorem Ipsum is simply dummy text of the printing and typesetting</p>
-            <div class="flex space-x-3 pb-6">
+            <div class="flex space-x-3 pb-6 justify-center">
                 <router-link :to="{name: 'codeVerificatoinTextSms'}"
-                    class="py-10 text-center cursor-pointer border-[1.5px] w-1/2 p-3 rounded-xl text-white bg-gradient-to-r from-[#F7AE35] bg-[#BD3334] font-[600] uppercase"
+                    class="py-10 text-center cursor-pointer border-[1.5px] w-[350px] p-3 rounded-xl text-white bg-gradient-to-r from-[#F7AE35] bg-[#BD3334] font-[600] uppercase"
                     @mouseover="imageHoverText = true"
                     @mouseleave="imageHoverText = false">
                     <div class="flex justify-center pb-6">
@@ -18,7 +18,7 @@
                     <p class="font-[700]">Text Message</p>
                 </router-link>
                 <router-link :to="{name: 'AuthenticationQr'}"
-                    class="py-10 text-center cursor-pointer w-1/2 p-3 rounded-xl font-[600] uppercase text-white bg-gradient-to-r from-[#F7AE35] bg-[#BD3334] border-[1.5px]"
+                    class="py-10 text-center cursor-pointer w-[350px] p-3 rounded-xl font-[600] uppercase text-white bg-gradient-to-r from-[#F7AE35] bg-[#BD3334] border-[1.5px]"
                     @mouseover="imageHoverAuth = true"
                     @mouseleave="imageHoverAuth = false" >
                     <div class="flex justify-center pb-6">

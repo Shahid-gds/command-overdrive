@@ -177,16 +177,7 @@
         <div class="">
           <div class="font-bold pb-2 uppercase text-white">notext</div>
           <div class="pb-8">
-            <div class="button-red b2" id="button-14">
-              <input type="checkbox" class="checkbox" />
-              <div class="knobs">
-                <span></span>
-              </div>
-              <div class="layer-red"></div>
-            </div>
-          </div>
-          <div class="pb-8">
-            <div class="button b2" id="button-14">
+            <div class="button b2" id="button-13">
               <input type="checkbox" class="checkbox" />
               <div class="knobs">
                 <span></span>
@@ -195,16 +186,25 @@
             </div>
           </div>
           <div class="pb-8">
-            <div class="button-red b2" id="button-14">
+            <div class="button b2" id="button-13">
               <input type="checkbox" class="checkbox" />
               <div class="knobs">
                 <span></span>
               </div>
-              <div class="layer-red"></div>
+              <div class="layer"></div>
+            </div>
+          </div>
+          <div class="pb-8">
+            <div class="button b2" id="button-13">
+              <input type="checkbox" class="checkbox" />
+              <div class="knobs">
+                <span></span>
+              </div>
+              <div class="layer"></div>
             </div>
           </div>
           <div class="">
-            <div class="button b2" id="button-14">
+            <div class="button b2" id="button-13">
               <input type="checkbox" class="checkbox" />
               <div class="knobs">
                 <span></span>
@@ -401,20 +401,13 @@ const tableData = ref([
 
 <style scoped>
 .knobs,
-.layer,
-.layer-red {
+.layer {
   position: absolute;
   top: 0;
   bottom: 0;
 }
 
 .button {
-  position: relative;
-  width: 100px;
-  height: 36px;
-  overflow: hidden;
-}
-.button-red {
   position: relative;
   width: 100px;
   height: 36px;
@@ -438,14 +431,7 @@ const tableData = ref([
 
 .layer {
   width: 100%;
-  background-color: #dcdcdc;
-  transition: 0.3s ease all;
-  z-index: 1;
-  border-radius: 20px;
-}
-.layer-red {
-  width: 100%;
-  background-color: #d63d4a;
+  background-color: #D63D4A;
   transition: 0.3s ease all;
   z-index: 1;
   border-radius: 20px;
@@ -453,10 +439,7 @@ const tableData = ref([
 
 #button-13 .knobs:before,
 #button-13 .knobs:after,
-#button-13 .knobs span,
-#button-14 .knobs:before,
-#button-14 .knobs:after,
-#button-14 .knobs span {
+#button-13 .knobs span {
   position: absolute;
   top: 4px;
   width: 20px;
@@ -471,19 +454,11 @@ const tableData = ref([
 }
 
 #button-13 .knobs:before,
-#button-13 .knobs:after,
-#button-14 .knobs:before,
-#button-14 .knobs:after {
+#button-13 .knobs:after {
   z-index: 1;
 }
 
 #button-13 .knobs:before {
-  content: "ON";
-  left: 4px;
-  color: #8e8e8e;
-  font-size: 16px;
-}
-#button-14 .knobs:before {
   content: "ON";
   left: 4px;
   color: white;
@@ -493,18 +468,11 @@ const tableData = ref([
 #button-13 .knobs:after {
   content: "OFF";
   right: -72px;
-  color: #8e8e8e;
-  font-size: 16px;
-}
-#button-14 .knobs:after {
-  content: "OFF";
-  right: -72px;
-  color: white;
+  color: #8E8E8E;
   font-size: 16px;
 }
 
-#button-13 .knobs span,
-#button-14 .knobs span {
+#button-13 .knobs span {
   width: 40px;
   height: 27px;
   left: 55px;
@@ -513,18 +481,14 @@ const tableData = ref([
   border-radius: 20px;
 }
 
-#button-13 .checkbox:checked + .knobs span,
-#button-14 .checkbox:checked + .knobs span {
+#button-13 .checkbox:checked + .knobs span {
   left: 5px;
   background-color: #ffffff;
   border-radius: 20px;
 }
 
 #button-13 .checkbox:checked ~ .layer {
-  background-color: #dcdcdc;
-}
-#button-14 .checkbox:checked ~ .layer-red {
-  background-color: #d63d4a;
+  background-color: #DCDCDC;
 }
 .dropdown-enter-active,
 .dropdown-leave-active {

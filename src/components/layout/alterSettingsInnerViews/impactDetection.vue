@@ -184,13 +184,38 @@ const selectOption = (option) => {
   z-index: 3;
 }
 
+.knobs,
+.layer {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}
+
+.button {
+  position: relative;
+  width: 100px;
+  height: 36px;
+  overflow: hidden;
+}
+
+.checkbox {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 3;
+}
+
 .knobs {
   z-index: 2;
 }
 
 .layer {
   width: 100%;
-  background-color: #d63d4a;
+  background-color: #D63D4A;
   transition: 0.3s ease all;
   z-index: 1;
   border-radius: 20px;
@@ -207,7 +232,7 @@ const selectOption = (option) => {
   font-weight: bold;
   text-align: center;
   line-height: 1;
-  padding: 6px 4px;
+  padding: 7px 4px;
   border-radius: 2px;
   transition: 0.3s ease all;
 }
@@ -221,14 +246,14 @@ const selectOption = (option) => {
   content: "ON";
   left: 4px;
   color: white;
-  font-size: 18px;
+  font-size: 16px;
 }
 
 #button-13 .knobs:after {
   content: "OFF";
   right: -72px;
-  color: white;
-  font-size: 18px;
+  color: #8E8E8E;
+  font-size: 16px;
 }
 
 #button-13 .knobs span {
@@ -247,7 +272,7 @@ const selectOption = (option) => {
 }
 
 #button-13 .checkbox:checked ~ .layer {
-  background-color: #d63d4a;
+  background-color: #DCDCDC;
 }
 .dropdown-enter-active,
 .dropdown-leave-active {

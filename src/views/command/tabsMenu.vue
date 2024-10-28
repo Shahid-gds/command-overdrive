@@ -30,12 +30,12 @@
         </div>
 
         <div class="active-link"
-          @click="selectTab('altersTab')"
+          @click="selectTab('aletrsTab')"
           :class="[
-            selectedTab === 'altersTab' ? 'text-[#000000] font-[600] active-route' : 'text-[#929292] font-[400]',
+            selectedTab === 'aletrsTab' ? 'text-[#000000] font-[600] active-route' : 'text-[#929292] font-[400]',
             'cursor-pointer text-center w-[80px] font-[600] uppercase relative'
           ]">
-          Alters
+          Alerts
         </div>
        </div>
        <div class="bg-[#D63D4A] p-2 absolute -right-[3rem] top-0">
@@ -86,12 +86,12 @@
              </div>
      
              <div class="active-link"
-               @click="selectTab('altersTab')"
+               @click="selectTab('aletrsTab')"
                :class="[
-                 selectedTab === 'altersTab' ? 'text-[#000000] font-[600] active-route' : 'text-[#929292] font-[400]',
+                 selectedTab === 'aletrsTab' ? 'text-[#000000] font-[600] active-route' : 'text-[#929292] font-[400]',
                  'cursor-pointer text-center w-[80px] font-[600] uppercase relative'
                ]">
-               Alters
+               Alerts
              </div>
             </div>
             <div class="bg-[#D63D4A] p-2 absolute -right-[3rem] top-0" @click="toggleMenu">
@@ -113,7 +113,7 @@ import { useRoute, useRouter } from 'vue-router'
 import commandTab from '@/components/layout/commandTabs.vue/commandTab.vue';
 import tripsTab from '@/components/layout/commandTabs.vue/tripsTab.vue';
 import informationTab from '@/components/layout/commandTabs.vue/informationTab.vue';
-import altersTab from '@/components/layout/commandTabs.vue/altersTab.vue';
+import aletrsTab from '@/components/layout/commandTabs.vue/altersTab.vue';
 
 
 const isOpen = ref(false)
@@ -153,8 +153,8 @@ const currentComponent = computed(() => {
       return tripsTab
     case 'informationTab':
       return informationTab
-    case 'altersTab':
-      return altersTab
+    case 'aletrsTab':
+      return aletrsTab
     default:
       return null
   }

@@ -15,9 +15,9 @@
                   <img src="@/components/icons/search.svg" alt="" />
                 </div>
               </div>
-            <div>
+            <router-link :to="{name: 'Installers'}">
                 <img src="@/components/icons/open-wrench-tool.svg" alt="">
-            </div>
+            </router-link>
             <router-link :to="{name : 'AccountSettings'}">
                 <img src="@/components/icons/settings.svg" alt="">
             </router-link>
