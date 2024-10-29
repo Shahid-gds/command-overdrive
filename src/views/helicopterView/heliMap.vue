@@ -298,5 +298,13 @@ const currentComponent = computed(() => {
       padding-top: 4rem;
     }
   }
+  @media(max-width:1280px){
+    .details-btn {
+        margin-left: 0rem;
+    }
+    .tabs, .tabs-detail {
+        margin-left: 0rem;
+    }
+  }
   </style>
   

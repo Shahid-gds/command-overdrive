@@ -248,16 +248,16 @@
                 <td class="border-b-2 p-2">
                   <div
                     v-if="item.status === 'red-button'"
-                    class="button-red b2"
-                    id="button-14"
+                    class="button b2"
+                    id="button-13"
                   >
                     <input type="checkbox" class="checkbox" />
                     <div class="knobs">
                       <span></span>
                     </div>
-                    <div class="layer-red"></div>
+                    <div class="layer"></div>
                   </div>
-                  <div v-else class="button b2" id="button-14">
+                  <div v-else class="button b2" id="button-13">
                     <input type="checkbox" class="checkbox" />
                     <div class="knobs">
                       <span></span>
