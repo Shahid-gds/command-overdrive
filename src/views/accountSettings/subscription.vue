@@ -59,7 +59,7 @@
             <h1 class="font-[700] uppercase text-xl pb-2">Authorized User:</h1>
           <div class="bg-[#E8E8E8] p-4 rounded-lg ">
             <div v-for="user in paginatedUsers" :key="user.id"  class="flex space-x-10">
-                  <div class="flex justify-between items-center border-b-2 border-[#AEAEAE] w-full py-2">
+                  <div class="flex justify-between space-x-4 items-center border-b-2 border-[#AEAEAE] w-full py-2">
                       <div class="flex items-center space-x-2">
                           <div class="">
                               <img class="h-[70px]" src="@/assets/images/car-img-red.svg" alt="">
@@ -74,7 +74,7 @@
                           <div class="p-2 px-4 bg-[#D63D4A] font-[600] rounded-lg text-white cursor-pointer uppercase">Change</div>
                       </div>
                   </div>                     
-                  <div class="flex justify-between items-center border-b-2 border-[#AEAEAE] w-full py-2">
+                  <div class="flex justify-between space-x-4 items-center border-b-2 border-[#AEAEAE] w-full py-2">
                       <div class="flex items-center space-x-2">
                           <div class="">
                               <img class="h-[70px]" src="@/assets/images/car-img-red.svg" alt="">

@@ -83,7 +83,67 @@
           <div class="text-[#878787] font-[500]">90 + MPH</div>
         </div>
       </div>
-      <div class="max-h-[80vh] overflow-y-scroll pb-14 pr-4 mt-4">
+      <div v-if="!isHelicopterView" class="screen-height h-[73vh] overflow-y-scroll pr-4 mt-4">
+        <div v-for="month in months" :key="month.name" class="mt-4">
+          <button
+            @click="toggle(month.name)"
+            class="w-full flex justify-between text-left py-2 font-[700] text-lg border-t-2 border-b-2">
+            <div>
+              {{ month.name }}
+            </div>
+            <div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="black"
+                viewBox="0 0 24 24"
+                stroke-width="0"
+                stroke="black"
+                class="size-6 transition-transform duration-300"
+                :class="{ 'rotate-180': activeMonth === month.name }">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="m19.5 8.25-7.5 7.5-7.5-7.5"/>
+              </svg>
+            </div>
+          </button>
+          <transition name="fade">
+            <div v-if="activeMonth === month.name" class="pt-4">
+              <div
+                v-for="(day, index) in month.dayAndMoths"
+                :key="index"
+                class="pb-6">
+                <div class="flex justify-between items-center">
+                  <div class="font-[600] uppercase">
+                    {{ day.day }}
+                  </div>
+                  <div class="flex items-center">
+                    <div>
+                    {{ day.totalMile }} Total Miles
+                  </div> 
+                  <div class="text-[24px] text-[#D63D4A] font-[600]">&#x3e;</div>
+                </div>
+                </div>
+                <div
+                  v-for="(entry, entryIndex) in day.entries"
+                  :key="entryIndex"
+                  class="pt-2">
+                  <div
+                    @click="navigateToHelicopterDetail(entry)"
+                    class="border-2 cursor-pointer p-2 px-4 rounded-lg flex justify-between items-center hover:bg-[#FFE5E7] hover:text-[#E82031] transition duration-150">
+                    <div>{{ entry.time }}</div>
+                    <div class="text-center">
+                      <div class="font-[700]">{{ entry.milesDigit }}</div>
+                      <div>{{ entry.miles }}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </transition>
+        </div>
+      </div>
+      <div v-if="isHelicopterView" class="helicopter-view h-[65vh] overflow-y-scroll pr-4 mt-4">
         <div v-for="month in months" :key="month.name" class="mt-4">
           <button
             @click="toggle(month.name)"
@@ -590,5 +650,13 @@ const navigateToHelicopterDetail = (entry) => {
 ::-webkit-scrollbar-thumb {
   background-color: #c1c1c1;
   border-radius: 5px;
+}
+@media(max-width:1900px){
+  .screen-height {
+      height: 68vh;
+  }
+  .helicopter-view {
+      height: 60vh;
+  }
 }
 </style>

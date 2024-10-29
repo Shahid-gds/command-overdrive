@@ -15,7 +15,7 @@
     
     <div class="flex w-full mt-[5rem]">
       <div class="flex-grow p-4"></div>
-      <div class="2xl:w-[60%] w-[68%]">
+      <div class="2xl:w-[60%] w-[80%]">
         <heliMap />
       </div>
     </div>

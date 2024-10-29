@@ -2,7 +2,7 @@
     <section class="bg-[rgb(232,232,232)] h-screen fixed z-40">
       <div class="mt-[6rem] pl-4 pr-2">
        <div class="pb-2">
-        <router-link :to="{name : 'Onboarding'}" class="flex space-x-2 text-white rounded-lg font-[600] cursor-pointer uppercase justify-center px-4 bg-[#D63D4A] p-3">
+        <router-link :to="{name : 'Onboarding'}" class="flex space-x-2 text-white rounded-lg font-[600] cursor-pointer uppercase justify-center px-4 bg-[#D63D4A] p-2">
           <div>
            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="4" stroke="currentColor" class="size-6">
              <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
@@ -16,16 +16,16 @@
        <div class="relative pb-4">
         <input
           type="search"
-          class="bg-[white] outline-none p-3 border-2 border-[#B9B9B9] rounded-lg w-full pl-12 placeholder:text-[#000000]"
+          class="bg-[white] outline-none p-2 border-2 border-[#B9B9B9] rounded-lg w-full pl-12 placeholder:text-[#000000]"
           placeholder="Search Instailer"  />
         <div class="absolute top-3.5 left-4">
           <img src="@/components/icons/search.svg" alt="" />
         </div>
       </div>
-        <div class="h-screen overflow-y-scroll pb-[14rem]">
-          <div class="main-rounters space-y-3 pb-2">
+        <div class="h-screen">
+          <div class="main-rounters h-[76vh] overflow-y-scroll pr-3 pb-2">
             <router-link
-              class="flex items-center space-x-2 p-4 transition-all duration-300 ease-in-out border-b-[1px] border-[#C2C2C2]"
+              class="flex items-center space-x-2 py-3 px-1 transition-all duration-300 ease-in-out border-b-[1px] border-[#C2C2C2]"
               v-for="item in menu"
               :key="item"
               :to="item.route"
@@ -37,14 +37,14 @@
                 <span>
                   <img :src="item.carImg">
                 </span>
-                <span v-if="item.active" class="w-4 h-4 border-white border-2 bg-[#E82031] absolute -top-2 -left-2 rounded-full"></span>
-                <span v-if="item.unactive" class="w-4 h-4 border-white border-2 bg-[#2BE31E] absolute -top-2 -left-2 rounded-full"></span>
+                <span v-if="item.active" class="w-4 h-4 border-white border-2 bg-[#E82031] absolute -top-1 -left-1.5 rounded-full"></span>
+                <span v-if="item.unactive" class="w-4 h-4 border-white border-2 bg-[#2BE31E] absolute -top-1 -left-1.5 rounded-full"></span>
               </div>
               <div class="">
-                <div class="text-[#000000] text-[16px] font-[600]">
+                <div class="text-[#000000] text-[14px] font-[600]">
                   {{ item.name }}
                 </div>
-                <div class="text-[14px] text-[#434343]">
+                <div class="text-[12px] text-[#434343]">
                   {{ item.made }} - {{ item.model }}
                 </div>
               </div>
@@ -54,7 +54,7 @@
                   <div class="flex justify-center">
                     <img :src="item.icon" alt="">
                   </div>
-                  <div class="uppercase text-center text-[14px] text-[#E82031] font-[600]">
+                  <div class="uppercase text-center text-[12px] text-[#E82031] font-[600]">
                     {{ item.status }}
                   </div>
                 </div>
@@ -304,12 +304,8 @@
   @media(max-width:1900px){
     .main-rounters {
       padding: 0.5rem;
+      height: 72vh;
     }
-    .space-y-3 > :not([hidden]) ~ :not([hidden]) {
-      --tw-space-y-reverse: 0;
-      margin-top: calc(0.3rem /* 12px */ * calc(1 - var(--tw-space-y-reverse)));
-      margin-bottom: calc(0.3rem /* 12px */ * var(--tw-space-y-reverse));
-  }
   }
 
   </style>  

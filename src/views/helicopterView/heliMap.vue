@@ -4,7 +4,7 @@
         <div ref="mapContainer" class="absolute top-0 left-0 z-0 w-full h-full"></div>
         <button 
           @click="toggleDetails" 
-          class="details-btn absolute flex items-center bottom-0 transform 2xl:translate-x-1/2 2xl:left-10 left-4 bg-[#5C5C5C] text-white py-2 px-4 rounded-t-lg">
+          class="details-btn absolute flex items-center bottom-0 transform 2xl:translate-x-[30%] bg-[#5C5C5C] text-white py-2 px-4 rounded-t-lg">
           <div>Trip Details</div>
           <div><svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" stroke-width="0" stroke="currentColor" class="size-6">
             <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
@@ -13,11 +13,11 @@
         </button>
       </div>
       <transition name="fade">
-        <div v-if="showDetails" class="tabs-detail pt-4 2xl:pl-[6rem] relative z-10 bg-[#F8F8F8] rounded">
+        <div v-if="showDetails" class="tabs-detail pt-4 2xl:pl-[2rem] relative z-10 bg-[#F8F8F8] rounded">
           <div class="p-4">
             <div class="flex justify-between pb-4"> 
                 <div class="flex space-x-4">
-                <div class="w-6 h-6 bg-[#CD092B] rounded-full"></div>
+                <div class="w-4 h-4 bg-[#CD092B] rounded-full"></div>
                 <div class="">
                     <div class="text-[#7AA5F4] font-[600] uppercase text-[14px]">Ended at 6:38 PM</div>
                     <div>160,171 mi</div>
@@ -34,7 +34,7 @@
             </div>
             <div class="event-tab 2xl:flex items-center justify-between 2xl:space-x-6"> 
                 <div class="flex space-x-4 w-full 2xl:pb-0 pb-6">
-                <div class="w-6 h-6 bg-[#CD092B] rounded-full"></div>
+                <div class="w-4 h-4 bg-[#CD092B] rounded-full"></div>
                 <div class="">
                     <div class="text-[#7AA5F4] font-[600] uppercase text-[14px]">Ended at 6:38 PM</div>
                     <div>160,171 mi</div>
@@ -65,7 +65,7 @@
           </div>
         </div>
       </transition>
-      <div class="tabs 2xl:pl-[6rem] pl-[2rem] py-5">
+      <div class="tabs 2xl:pl-[3rem] pl-[2rem] py-5">
           <!-- Tabs -->
          <div class="flex items-center">
             <div
@@ -298,12 +298,18 @@ const currentComponent = computed(() => {
       padding-top: 4rem;
     }
   }
-  @media(max-width:1280px){
+  @media(max-width:1536px){
     .details-btn {
-        margin-left: 0rem;
+        margin-left: 4rem;
     }
     .tabs, .tabs-detail {
-        margin-left: 0rem;
+        margin-left: 3rem;
+    }
+    .event-tab{
+      flex-direction: column;
+    }
+    .slider-container {
+      padding-top: 2rem;
     }
   }
   </style>
