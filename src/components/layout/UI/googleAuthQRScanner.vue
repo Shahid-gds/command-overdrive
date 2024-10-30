@@ -1,7 +1,7 @@
 <template>
     <section class="flex items-center justify-center min-h-screen">
         <div class="2xl:w-[25%] w-1/2 container mx-auto ">
-            <div class="pb-6 flex justify-center">
+            <div class="logo pb-6 flex justify-center">
                 <img src="@/assets/images/logo.svg" alt="">
               </div>
             <h1 class="text-[#b92a32] 2xl:text-[36px] text-[30px] font-[700] uppercase text-center">Google Authenticator</h1>
@@ -17,5 +17,20 @@
 </template>
 
 <style scoped>
-
+@media(max-width:1366px){
+    .logo img {
+        width: 150px;
+    }
+    .logo {
+       padding-bottom: 4px;
+       margin-top: 10px;
+    }
+  h1 {
+      font-size: 25px;
+    }
+    .submit-btn {
+      padding: 8px;
+      font-size: 16px;
+    } 
+  }
 </style>

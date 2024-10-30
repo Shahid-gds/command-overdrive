@@ -393,4 +393,14 @@ onMounted(() => {
       height: 65vh;
     }
     }
+    @media (max-width: 1366px) and (max-height: 800px) {
+      .screen-height {
+          height: 68vh;
+      }
+  }
+    @media (max-width: 1366px) and (max-height: 650px) {
+      .screen-height {
+          height: 60vh;
+      }
+  }
 </style>

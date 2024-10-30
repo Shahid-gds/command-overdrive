@@ -237,5 +237,16 @@
       height: 72vh;
     }
   }
-
+  @media (max-width: 1366px) and (max-height: 800px) {
+    .main-rounters {
+        padding: 0.5rem;
+        height: 72vh;
+    }
+}
+  @media (max-width: 1366px) and (max-height: 650px) {
+    .main-rounters {
+        padding: 0.5rem;
+        height: 66vh;
+    }
+}
   </style>  

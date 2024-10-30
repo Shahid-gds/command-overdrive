@@ -312,5 +312,33 @@ const currentComponent = computed(() => {
       padding-top: 2rem;
     }
   }
+  @media(max-width:1366px){
+    .details-btn {
+        margin-left: 6rem;
+    }
+    .tabs, .tabs-detail {
+        margin-left: 5rem;
+    }
+    .event-tab{
+      flex-direction: column;
+    }
+    .slider-container {
+      padding-top: 2rem;
+    }
+  }
+  @media(max-width:1280px){
+    .details-btn {
+        margin-left: 7rem;
+    }
+    .tabs, .tabs-detail {
+        margin-left: 6rem;
+    }
+    .event-tab{
+      flex-direction: column;
+    }
+    .slider-container {
+      padding-top: 2rem;
+    }
+  }
   </style>
   

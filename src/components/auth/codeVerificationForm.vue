@@ -70,7 +70,7 @@ const handleInput = (event, index) => {
 </script>
 
 <style scoped>
-@media(max-width:1280px){
+@media(max-width:1366px){
     .logo img {
         width: 150px;
     }
