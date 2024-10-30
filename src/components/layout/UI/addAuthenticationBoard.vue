@@ -2,7 +2,7 @@
 <template>
     <section class="flex items-center justify-center min-h-screen">
         <div class="2x:w-[30%] w-1/2 container mx-auto">
-            <div class="pb-6 flex justify-center">
+            <div class="logo pb-6 flex justify-center">
                 <img src="@/assets/images/logo.svg" alt="">
               </div>
             <h1 class="text-[#b92a32] text-[36px] font-[700] uppercase text-center">Add Authentication</h1>
@@ -47,3 +47,22 @@ import googleAuthWhite from '@/components/icons/google-auth.svg';
 const imageHoverText = ref(false);
 const imageHoverAuth = ref(false);
 </script>
+
+<style scoped>
+@media(max-width:1280px){
+    .logo img {
+        width: 150px;
+    }
+    .logo {
+       padding-bottom: 4px;
+       margin-top: 10px;
+    }
+  h1 {
+      font-size: 25px;
+    }
+    .submit-btn {
+      padding: 8px;
+      font-size: 16px;
+    } 
+  }
+</style>

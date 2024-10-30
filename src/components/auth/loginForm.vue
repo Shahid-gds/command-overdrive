@@ -1,22 +1,22 @@
 <template>
   <section class="flex items-center justify-center min-h-screen">
     <div class="2xl:w-[35%] w-1/2 container mx-auto">
-      <div class="pb-6 flex justify-center">
+      <div class="logo pb-6 flex justify-center">
         <img src="@/assets/images/logo.svg" alt="">
       </div>
-    <div class="text-center">
+    <div class="sign-up text-center">
       <h1 class="text-[#B92A32] 2xl:text-[40px] text-[30px] font-[700] uppercase">LogIn</h1>
       <p class="text-[#000000] font-[500] pb-4">
         Sign-In Your Account Now
       </p>
     </div>
-     <div class="flex justify-center pb-6">
+     <div class="with-google flex justify-center pb-6">
       <button
       class="hover-btn items-center space-x-2 bg-gradient-to-r from-[#F7AE35] bg-[#BB2E34] px-10 p-3.5 rounded-md shadow-lg hover:bg-gradient-to-l hover:from-[#f7ab35] hover:bg-[#be3333]" >
       <div class="text-white uppercase font-[600]">Sign-in With Google</div>
     </button>
      </div>
-      <form action="" class="w-full">
+      <form action="" class="sing-up-form w-full">
         <div class="pb-4">
           <input 
             type="email" placeholder="Enter Your Email Address"
@@ -29,7 +29,7 @@
         <div class="pb-4">
           <router-link
             :to="{ name: 'AuthOnboarding' }"
-            class="hover-btn text-xl text-center w-full p-3.5 rounded-lg text-white bg-gradient-to-b from-[#b72b33] bg-[#962d34] font-[700] uppercase">
+            class="submit-btn hover-btn text-xl text-center w-full p-3.5 rounded-lg text-white bg-gradient-to-b from-[#b72b33] bg-[#962d34] font-[700] uppercase">
             Login Now
             </router-link>
         </div>
@@ -137,5 +137,33 @@
   stroke-width: 2.5;
   stroke-linecap: round;
   stroke-linejoin: round;
+}
+@media(max-width:1280px){
+  .logo img {
+      width: 150px;
+  }
+  .logo {
+     padding-bottom: 4px;
+     margin-top: 10px;
+  }
+  .sign-up h1 {
+    font-size: 25px;
+  }
+  .sign-up p {
+    padding-bottom: 4px;
+  }
+  .with-google button {
+    padding: 8px;
+  }
+  .with-google {
+    padding-bottom: 10px;
+  }
+  .sing-up-form input {
+    padding: 8px;
+  }
+  .submit-btn {
+    padding: 8px;
+    font-size: 16px;
+  } 
 }
 </style>

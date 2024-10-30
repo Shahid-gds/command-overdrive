@@ -1,7 +1,7 @@
 <template>
     <section class="flex items-center justify-center min-h-screen">
         <div class="2xl:w-[35%] w-1/2 container mx-auto">
-            <div class="pb-6 flex justify-center">
+            <div class="logo pb-6 flex justify-center">
                 <img src="@/assets/images/logo.svg" alt="">
               </div>
             <h1 class="text-[#b92a32] 2xl:text-[40px] text-[30px] text-center uppercase font-[700]">Two-factor Authentication</h1>
@@ -17,7 +17,7 @@
                     </div>
                 </div>
                 <div class="pb-2">
-                    <router-link :to="{name: 'Login'}" class="hover-btn text-center  w-full p-3 rounded-xl text-white bg-gradient-to-b from-[#b72b33] bg-[#962d34] font-[700] text-xl uppercase">Verify Your Code</router-link>
+                    <router-link :to="{name: 'Login'}" class="submit-btn hover-btn text-center  w-full p-3 rounded-xl text-white bg-gradient-to-b from-[#b72b33] bg-[#962d34] font-[700] text-xl uppercase">Verify Your Code</router-link>
                 </div>
                 <div class="text-center">
                     <span class="text-[#383838] font-[400]">Didn’t receive code? </span> <router-link :to="{name : ''}" class="text-[#ba2b33] font-[400]">Request Again</router-link>
@@ -70,5 +70,20 @@ const handleInput = (event, index) => {
 </script>
 
 <style scoped>
-
+@media(max-width:1280px){
+    .logo img {
+        width: 150px;
+    }
+    .logo {
+       padding-bottom: 4px;
+       margin-top: 10px;
+    }
+  h1 {
+      font-size: 25px;
+    }
+    .submit-btn {
+      padding: 8px;
+      font-size: 16px;
+    } 
+  }
 </style>
