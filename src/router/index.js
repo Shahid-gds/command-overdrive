@@ -70,7 +70,7 @@ const router = createRouter({
       component: () => import("@/pages/dashboard.vue"),
     },
     {
-      path: "/command",
+      path: "/dashboard/:id",
       name: "Command",
       // meta: { layout: "Default" },
       component: () => import("@/pages/command.vue"),

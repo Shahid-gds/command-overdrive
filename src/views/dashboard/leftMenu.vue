@@ -27,12 +27,12 @@
             <router-link
               class="flex items-center space-x-2 py-3 px-1 transition-all duration-300 ease-in-out border-b-[1px] border-[#C2C2C2]"
               v-for="item in menu"
-              :key="item"
-              :to="item.route"
+              :key="item.id"
+              :to="`/dashboard/${item.id}`"
               :class="{
                 'bg-white rounded-lg':
-                  $route.path === item.route,
-                '' : $route.path !== item.route,}">
+                  $route.path === `/dashboard/${item.id}`,
+                '' : $route.path !== `/dashboard/${item.id}`,}">
               <div class="relative">
                 <span>
                   <img :src="item.carImg">
@@ -73,6 +73,7 @@
  
   const menu = ref([
     {
+      id: '1',
       carImg: import("@/assets/images/car-img-red.svg").then(
         (module) => module.default
       ),
@@ -84,9 +85,9 @@
       model: "2021",
       status: "driving",
       active: " ",
-      route: "/command",
     },
     {
+      id:'2',
       carImg: import("@/assets/images/car-img-white.svg").then(
         (module) => module.default
       ),
@@ -98,9 +99,9 @@
       model: "2021",
       status: "idle",
       unactive: " ",
-      route: "",
     },
     {
+      id: '3',
       carImg: import("@/assets/images/car-img-black.svg").then(
         (module) => module.default
       ),
@@ -112,9 +113,9 @@
       model: "2021",
       status: "locked",
       active: " ",
-      route: "",
     },
     {
+      id:'4',
       carImg: import("@/assets/images/car-img-red.svg").then(
         (module) => module.default
       ),
@@ -126,9 +127,9 @@
       model: "2021",
       status: "unlock",
       active: " ",
-      route: "",
     },
     {
+      id: '5',
       carImg: import("@/assets/images/car-img-white.svg").then(
         (module) => module.default
       ),
@@ -140,9 +141,9 @@
       model: "2021",
       status: "disabled",
       active: " ",
-      route: "",
     },
     {
+      id: '6',
       carImg: import("@/assets/images/car-img-black.svg").then(
         (module) => module.default
       ),
@@ -154,9 +155,9 @@
       model: "2021",
       status: "impounded",
       active: " ",
-      route: "",
     },
     {
+      id: '7',
       carImg: import("@/assets/images/car-img-red.svg").then(
         (module) => module.default
       ),
@@ -168,9 +169,9 @@
       model: "2021",
       status: "Disconnected",
       active: " ",
-      route: "",
     },
     {
+      id: '8',
       carImg: import("@/assets/images/car-img-red.svg").then(
         (module) => module.default
       ),
@@ -182,9 +183,9 @@
       model: "2021",
       status: "driving",
       active: " ",
-      route: "",
     },
     {
+      id: '9',
       carImg: import("@/assets/images/car-img-white.svg").then(
         (module) => module.default
       ),
@@ -196,9 +197,9 @@
       model: "2021",
       status: "idle",
       unactive: " ",
-      route: "",
     },
     {
+      id:'10',
       carImg: import("@/assets/images/car-img-black.svg").then(
         (module) => module.default
       ),
@@ -210,9 +211,9 @@
       model: "2021",
       status: "locked",
       active: " ",
-      route: "",
     },
     {
+      id: '10',
       carImg: import("@/assets/images/car-img-red.svg").then(
         (module) => module.default
       ),
@@ -224,9 +225,9 @@
       model: "2021",
       status: "unlock",
       active: " ",
-      route: "",
     },
     {
+      id: '11',
       carImg: import("@/assets/images/car-img-white.svg").then(
         (module) => module.default
       ),
@@ -238,9 +239,9 @@
       model: "2021",
       status: "disabled",
       active: " ",
-      route: "",
     },
     {
+      id: '12',
       carImg: import("@/assets/images/car-img-black.svg").then(
         (module) => module.default
       ),
@@ -252,9 +253,9 @@
       model: "2021",
       status: "impounded",
       active: " ",
-      route: "",
     },
     {
+      id: '13',
       carImg: import("@/assets/images/car-img-red.svg").then(
         (module) => module.default
       ),
@@ -266,7 +267,6 @@
       model: "2021",
       status: "Disconnected",
       active: " ",
-      route: "",
     },
   ]);
   

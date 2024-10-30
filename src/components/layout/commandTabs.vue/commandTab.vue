@@ -67,7 +67,7 @@
                 </div>
               </div>
               <div class="pt-6">
-                <button class="bg-[#D63D4A] text-white p-3 w-full rounded-lg flex space-x-2 justify-center items-center">
+                <button @click="openAddVehicleModal" class="bg-[#D63D4A] text-white p-3 w-full rounded-lg flex space-x-2 justify-center items-center">
                     <div class="font-[600] uppercase">Share Access</div>
                     <div class="">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" class="size-6">
@@ -194,8 +194,20 @@
      </div>
     
     </section>
+    <addVehicle  :show="showAddVehicleModal" :onClose="colseVehicleModal" />
 </template>
+<script setup>
+ import { onMounted, ref } from "vue";
+import addVehicle from "@/components/layout/popupModels/addVehicle.vue";
 
+const showAddVehicleModal = ref(false);
+const openAddVehicleModal = () => {
+    showAddVehicleModal.value = true;
+};
+const colseVehicleModal = () => {
+    showAddVehicleModal.value = false;
+};
+</script>
 <style scoped>
 ::-webkit-scrollbar {
     width: 5px;

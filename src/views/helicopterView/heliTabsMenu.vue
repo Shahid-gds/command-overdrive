@@ -38,11 +38,6 @@
         Alters
       </div>
      </div>
-     <div class="bg-[#D63D4A] p-2 absolute -right-[3rem] top-0">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" class="size-8">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-        </svg>          
-     </div>
       </div>
       <div class="bg-white h-screen p-4">
         <component :is="currentComponent" />
@@ -141,7 +136,7 @@ updateSelectedTabFromQuery()
 
 const selectTab = (tab) => {
 selectedTab.value = tab
-router.push({ path: '/command', query: { tab } })
+router.push({ path: '/dashboard/:?', query: { tab } })
 }
 
 

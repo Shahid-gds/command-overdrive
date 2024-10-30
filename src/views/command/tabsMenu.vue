@@ -1,62 +1,8 @@
 <template>
-    <section class="2xl:block hidden">
-        <div class="bg-[white] w-full pt-4 relative">
-       <div class="flex space-x-5 border-b-[1px] pb-[0.6rem] border-[#A1A1A1]">
-          <div class="active-link"
-          @click="selectTab('commandTab')"
-          :class="[
-            selectedTab === 'commandTab' ? 'text-[#000000] font-[600] active-route' : 'text-[#929292] font-[400]',
-            'cursor-pointer text-center w-[120px] font-[600] uppercase relative'
-          ]">
-          Command
-        </div>
-  
-        <div class="active-link"
-          @click="selectTab('tripsTab')"
-          :class="[
-            selectedTab === 'tripsTab' ? 'text-[#000000] font-[600] active-route' : 'text-[#929292] font-[400]',
-            'cursor-pointer text-center w-[60px] font-[600] uppercase relative'
-          ]">
-          Trips
-        </div>
-  
-        <div class="active-link"
-          @click="selectTab('informationTab')"
-          :class="[
-            selectedTab === 'informationTab' ? 'text-[#000000] font-[600] active-route' : 'text-[#929292] font-[400]',
-            'cursor-pointer text-center w-[130px] font-[600] uppercase relative'
-          ]">
-          Information
-        </div>
-
-        <div class="active-link"
-          @click="selectTab('aletrsTab')"
-          :class="[
-            selectedTab === 'aletrsTab' ? 'text-[#000000] font-[600] active-route' : 'text-[#929292] font-[400]',
-            'cursor-pointer text-center w-[80px] font-[600] uppercase relative'
-          ]">
-          Alerts
-        </div>
-       </div>
-       <div class="bg-[#D63D4A] p-2 absolute -right-[3rem] top-0">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" class="size-8">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-          </svg>          
-       </div>
-        </div>
-        <div class="bg-white h-screen p-4">
-          <component :is="currentComponent" />
-        </div>
-      </section>
-      <TransitionGroup name="list" tag="ul" class="relative">
-        <div v-if="isOpen" @click="closeOutSideClick" class="fixed inset-0 -z-10 opacity-25"></div>
-        <button v-if="!isOpen" class="2xl:hidden absolute top-0 left-0 -z-10 bg-[#D63D4A] p-2  rounded-br-lg" @click="toggleMenu">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" class="size-6">
-            <path stroke-linecap="round" stroke-linejoin="round" d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5" />
-          </svg>          
-        </button>
-        <div class="bg-white h-screen fixed -z-10" v-if="isOpen">
-          <div  class="bg-[white] w-full pt-4 relative">
+    <section class="">
+      <TransitionGroup name="list" tag="ul" >
+        <div v-if="isOpenLarge" class="fixed bg-white">
+          <div class="bg-[white] w-full pt-4 relative">
             <div class="flex space-x-5 border-b-[1px] pb-[0.6rem] border-[#A1A1A1]">
                <div class="active-link"
                @click="selectTab('commandTab')"
@@ -94,17 +40,18 @@
                Alerts
              </div>
             </div>
-            <div class="bg-[#D63D4A] p-2 absolute -right-[3rem] top-0" @click="toggleMenu">
+            <div class="bg-[#D63D4A] p-2 absolute -right-[3rem] top-0 cursor-pointer" @click="toggleMenuLarge">
              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" class="size-8">
                  <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
                </svg>          
             </div>
              </div>
              <div class="bg-white h-screen p-4">
-              <component :is="currentComponent" />
-            </div>
+               <component :is="currentComponent" />
+             </div>
         </div>
       </TransitionGroup>
+      </section>
 </template>
 
 <script setup>
@@ -115,15 +62,9 @@ import tripsTab from '@/components/layout/commandTabs.vue/tripsTab.vue';
 import informationTab from '@/components/layout/commandTabs.vue/informationTab.vue';
 import aletrsTab from '@/components/layout/commandTabs.vue/altersTab.vue';
 
-
-const isOpen = ref(false)
-
-  const toggleMenu = () => {
-    isOpen.value = !isOpen.value
-  }
-
-  const closeOutSideClick = () => {
-    isOpen.value = false
+const isOpenLarge = ref(true)
+  const toggleMenuLarge = () => {
+    isOpenLarge.value = !isOpenLarge.value
   }
 const route = useRoute()
 const router = useRouter()
@@ -138,6 +79,10 @@ const updateSelectedTabFromQuery = () => {
 onMounted(() => {
   updateSelectedTabFromQuery()
 })
+
+watch(route, () => {
+  isOpenLarge.value = true;
+});
 
 const selectTab = (tab) => {
   selectedTab.value = tab
@@ -194,6 +139,6 @@ const currentComponent = computed(() => {
   .list-enter-from,
   .list-leave-to {
     opacity: 0;
-    transform: translateX(-400px);
+    transform: translateX(-10px);
   }
 </style>

@@ -1,38 +1,38 @@
 <template>
     <section class="bg-[rgb(232,232,232)] pt-4">
       <div class="pl-4 pr-2">
-       <div class="pb-2">
-        <button @click.prevent="openAddVehicleModal"  class="flex w-full space-x-2 text-white rounded-lg font-[600] cursor-pointer uppercase justify-center px-4 bg-[#D63D4A] p-3">
-          <div>
-           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="4" stroke="currentColor" class="size-6">
-             <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-           </svg>          
+        <div class="pb-2">
+          <router-link :to="{name : 'Onboarding'}" class="flex space-x-2 text-white rounded-lg font-[600] cursor-pointer uppercase justify-center px-4 bg-[#D63D4A] p-2">
+            <div>
+             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="4" stroke="currentColor" class="size-6">
+               <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+             </svg>          
+            </div>
+             <div>
+              add device
+            </div>
+           </router-link>
+         </div>
+         <div class="relative pb-4">
+          <input
+            type="search"
+            class="bg-[white] outline-none p-2 border-2 border-[#B9B9B9] rounded-lg w-full pl-12 placeholder:text-[#000000]"
+            placeholder="Search Instailer"  />
+          <div class="absolute top-3.5 left-4">
+            <img src="@/components/icons/search.svg" alt="" />
           </div>
-           <div>
-            Add Vehicle
-          </div>
-         </button>
-       </div>
-       <div class="relative pb-4">
-        <input
-          type="search"
-          class="bg-[white] outline-none p-3 border-2 border-[#B9B9B9] rounded-lg w-full pl-12 placeholder:text-[#000000]"
-          placeholder="Search Vehicle"  />
-        <div class="absolute top-3.5 left-4">
-          <img src="@/components/icons/search.svg" alt="" />
         </div>
-      </div>
         <div class="h-screen">
           <div class="main-rounters overflow-y-scroll h-[75vh] pb-2 pr-3">
             <router-link
               class="flex items-center space-x-2 py-3 px-1 transition-all duration-300 ease-in-out border-b-[1px] border-[#C2C2C2]"
               v-for="item in menu"
-              :key="item"
-              :to="item.route"
+              :key="item.id"
+              :to="`/dashboard/${item.id}`"
               :class="{
                 'bg-white rounded-lg':
-                  $route.path === item.route,
-                '' : $route.path !== item.route,}">
+                  $route.path === `/dashboard/${item.id}`,
+                '' : $route.path !== `/dashboard/${item.id}`,}">
               <div class="relative">
                 <span>
                   <img :src="item.carImg">
@@ -64,24 +64,15 @@
         </div>
       </div>
     </section>
-    <addVehicle  :show="showAddVehicleModal" :onClose="colseVehicleModal" />
+    
   </template>
   
   <script setup>
   import { onMounted, ref } from "vue";
   import { RouterLink } from "vue-router";
-  import addVehicle from "@/components/layout/popupModels/addVehicle.vue";
-
-  const showAddVehicleModal = ref(false);
-const openAddVehicleModal = () => {
-    showAddVehicleModal.value = true;
-};
-const colseVehicleModal = () => {
-    showAddVehicleModal.value = false;
-};
- 
-  const menu = ref([
+const menu = ref([
     {
+      id: '1',
       carImg: import("@/assets/images/car-img-red.svg").then(
         (module) => module.default
       ),
@@ -93,9 +84,9 @@ const colseVehicleModal = () => {
       model: "2021",
       status: "driving",
       active: " ",
-      route: "/command",
     },
     {
+      id:'2',
       carImg: import("@/assets/images/car-img-white.svg").then(
         (module) => module.default
       ),
@@ -107,9 +98,9 @@ const colseVehicleModal = () => {
       model: "2021",
       status: "idle",
       unactive: " ",
-      route: "",
     },
     {
+      id: '3',
       carImg: import("@/assets/images/car-img-black.svg").then(
         (module) => module.default
       ),
@@ -121,9 +112,9 @@ const colseVehicleModal = () => {
       model: "2021",
       status: "locked",
       active: " ",
-      route: "",
     },
     {
+      id:'4',
       carImg: import("@/assets/images/car-img-red.svg").then(
         (module) => module.default
       ),
@@ -135,9 +126,9 @@ const colseVehicleModal = () => {
       model: "2021",
       status: "unlock",
       active: " ",
-      route: "",
     },
     {
+      id: '5',
       carImg: import("@/assets/images/car-img-white.svg").then(
         (module) => module.default
       ),
@@ -149,9 +140,9 @@ const colseVehicleModal = () => {
       model: "2021",
       status: "disabled",
       active: " ",
-      route: "",
     },
     {
+      id: '6',
       carImg: import("@/assets/images/car-img-black.svg").then(
         (module) => module.default
       ),
@@ -163,9 +154,9 @@ const colseVehicleModal = () => {
       model: "2021",
       status: "impounded",
       active: " ",
-      route: "",
     },
     {
+      id: '7',
       carImg: import("@/assets/images/car-img-red.svg").then(
         (module) => module.default
       ),
@@ -177,9 +168,9 @@ const colseVehicleModal = () => {
       model: "2021",
       status: "Disconnected",
       active: " ",
-      route: "",
     },
     {
+      id: '8',
       carImg: import("@/assets/images/car-img-red.svg").then(
         (module) => module.default
       ),
@@ -191,9 +182,9 @@ const colseVehicleModal = () => {
       model: "2021",
       status: "driving",
       active: " ",
-      route: "",
     },
     {
+      id: '9',
       carImg: import("@/assets/images/car-img-white.svg").then(
         (module) => module.default
       ),
@@ -205,9 +196,9 @@ const colseVehicleModal = () => {
       model: "2021",
       status: "idle",
       unactive: " ",
-      route: "",
     },
     {
+      id:'10',
       carImg: import("@/assets/images/car-img-black.svg").then(
         (module) => module.default
       ),
@@ -219,9 +210,9 @@ const colseVehicleModal = () => {
       model: "2021",
       status: "locked",
       active: " ",
-      route: "",
     },
     {
+      id: '10',
       carImg: import("@/assets/images/car-img-red.svg").then(
         (module) => module.default
       ),
@@ -233,9 +224,9 @@ const colseVehicleModal = () => {
       model: "2021",
       status: "unlock",
       active: " ",
-      route: "",
     },
     {
+      id: '11',
       carImg: import("@/assets/images/car-img-white.svg").then(
         (module) => module.default
       ),
@@ -247,9 +238,9 @@ const colseVehicleModal = () => {
       model: "2021",
       status: "disabled",
       active: " ",
-      route: "",
     },
     {
+      id: '12',
       carImg: import("@/assets/images/car-img-black.svg").then(
         (module) => module.default
       ),
@@ -261,9 +252,9 @@ const colseVehicleModal = () => {
       model: "2021",
       status: "impounded",
       active: " ",
-      route: "",
     },
     {
+      id: '13',
       carImg: import("@/assets/images/car-img-red.svg").then(
         (module) => module.default
       ),
@@ -275,7 +266,6 @@ const colseVehicleModal = () => {
       model: "2021",
       status: "Disconnected",
       active: " ",
-      route: "",
     },
   ]);
   
