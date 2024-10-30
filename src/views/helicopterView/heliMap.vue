@@ -41,7 +41,7 @@
                 </div>
                 <div class="text-[#ADADAD] font-[600] text-[14px]">20 Cooper Square, New York, NY 10003, USA</div>
               </div>
-              <div class="w-full flex items-center space-x-10">
+              <div class="w-full flex items-center">
                 <div class="">
                   <div class="bg-gradient-to-b from-[#b72b33] bg-[#962d34] w-10 h-10 p-2 px-2.5 cursor-pointer rounded-full">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" class="size-6">
@@ -49,14 +49,14 @@
                     </svg>                    
                   </div>
                 </div>
-                <div class="slider-container py-[3rem] w-full">
+                <div class="slider-container py-[3rem] w-full px-6">
                     <div class="slider-track" ref="track">
                       <div class="fill red-fill" :style="{ width: `${minPercent}%` }"></div>
                       <div
                         class="slider-handle red"
                         :style="{ left: `${minPercent}%` }"
                         @mousedown="startDrag('min')">
-                        <span class="flag w-[90px] text-center border-2 bottom-[30px] -right-[30px] z-20  p-2 rounded-lg text-[#757575] font-[700]">{{ min }}</span>
+                        <span class="flag w-[60px] text-center border-2 bottom-[30px] -right-[10px] z-20  p-2 rounded-lg text-[#757575] font-[700]">{{ min }}</span>
                       </div>
                     </div>
                   </div>               

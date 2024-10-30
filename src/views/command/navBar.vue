@@ -24,7 +24,7 @@
                <transition name="dropdown">
                 <ul
                   v-if="isStatusDropdownOpen"
-                  class="absolute mt-1 w-full bg-white border border-gray-300 rounded-xl z-40 transition-all ease-in-out duration-300 max-h-[200px] overflow-y-auto">
+                  class="absolute mt-1 w-full bg-white border border-gray-300 rounded-xl z-50 transition-all ease-in-out duration-300 max-h-[200px] overflow-y-auto">
                   <li
                     v-for="(option, index) in Statusoptions"
                     :key="index"
