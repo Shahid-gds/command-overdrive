@@ -13,7 +13,7 @@
      <div class="with-google flex justify-center pb-6">
       <button
       class="hover-btn items-center space-x-2 bg-gradient-to-r from-[#F7AE35] bg-[#BB2E34] px-10 p-3.5 rounded-md shadow-lg hover:bg-gradient-to-l hover:from-[#f7ab35] hover:bg-[#be3333]" >
-      <div class="text-white uppercase font-[600]">Sign-in With Google</div>
+      <div class="btn-text text-white uppercase font-[600]">Sign-in With Google</div>
     </button>
      </div>
       <form action="" class="sing-up-form w-full">
@@ -161,9 +161,30 @@
   .sing-up-form input {
     padding: 8px;
   }
+  .btn-text {
+    font-size: 14px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .sing-up-form input {
+    padding: 8px;
+  }
   .submit-btn {
     padding: 8px;
     font-size: 16px;
+  }
+  .checkbox-wrapper-45 .flip {
+    width: 20px;
+    height: 20px;
   } 
+  .checkbox-wrapper-45 .front,
+  .checkbox-wrapper-45 .back {
+    width: 20px;
+    height: 20px;
+  }
+  .checkbox-wrapper-45 .back svg {
+    margin-top: 2px;
+    margin-left: 2px;
+  }
 }
 </style>
