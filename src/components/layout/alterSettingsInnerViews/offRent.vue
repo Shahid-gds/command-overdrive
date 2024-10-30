@@ -1,5 +1,5 @@
 <template>
-    <section class="overflow-y-auto max-h-[70vh] px-6">
+    <section class="screen-height overflow-y-auto max-h-[70vh] px-6">
         <div
         class="border-b-[1px] pb-8 border-[#707070]">
           <div class="flex justify-between">
@@ -735,4 +735,14 @@ const isDropdownOpen = ref(false);
     display: block;
    }
     }
+    @media (max-width: 1366px) and (max-height: 800px) {
+      .screen-height {
+          height: 68vh;
+      }
+  }
+    @media (max-width: 1366px) and (max-height: 650px) {
+      .screen-height {
+          height: 60vh;
+      }
+  }
 </style>

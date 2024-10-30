@@ -1,5 +1,5 @@
 <template>
-    <section class="px-6">
+    <section class="px-6 overflow-y-auto max-h-[70vh] pb-[3rem]">
     <div class="border-b-[1px] pb-16 border-[#707070]">
         <div class="w-full">
             <div class="flex justify-between">
@@ -326,4 +326,14 @@ const selectOption = (option) => {
     opacity: 0;
     transform: translateY(-10px);
   }
+  @media (max-width: 1366px) and (max-height: 800px) {
+    .screen-height {
+        height: 68vh;
+    }
+}
+  @media (max-width: 1366px) and (max-height: 650px) {
+    .screen-height {
+        height: 60vh;
+    }
+}
   </style> 

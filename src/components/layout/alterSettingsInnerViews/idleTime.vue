@@ -1,5 +1,5 @@
 <template>
-    <section class="px-6 h-[70vh] overflow-y-auto pb-[10rem]">
+    <section class="screen-height px-6 h-[70vh] overflow-y-auto pb-[10rem]">
         <div>
             <idleEvent />
         </div>
@@ -94,4 +94,14 @@ const selectOption = (option) => {
     opacity: 0;
     transform: translateY(-10px);
   }
+  @media (max-width: 1366px) and (max-height: 800px) {
+    .screen-height {
+        height: 68vh;
+    }
+}
+  @media (max-width: 1366px) and (max-height: 650px) {
+    .screen-height {
+        height: 60vh;
+    }
+}
   </style> 

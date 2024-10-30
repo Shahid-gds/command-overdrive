@@ -1,5 +1,5 @@
 <template>
-  <section class="overflow-y-auto max-h-[70vh] px-6">
+  <section class="screen-height overflow-y-auto max-h-[70vh] px-6">
     <div class="flex justify-between">
       <div class="w-full">
         <h1 class="font-[700] text-2xl pb-3">Maintenance Alert</h1>
@@ -498,5 +498,15 @@ const tableData = ref([
 .dropdown-leave-to {
   opacity: 0;
   transform: translateY(-10px);
+}
+@media (max-width: 1366px) and (max-height: 800px) {
+  .screen-height {
+      height: 68vh;
+  }
+}
+@media (max-width: 1366px) and (max-height: 650px) {
+  .screen-height {
+      height: 60vh;
+  }
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <section>
+    <section class="overflow-y-auto max-h-[70vh] pb-[3rem] px-6">
       <div class="flex space-x-24 border-b-[1px] pb-16 border-[#707070] px-6">
         <div class="w-full">
           <div class="flex justify-between pb-6">
@@ -37,7 +37,7 @@
                 :style="{ left: `${minPercent}%` }"
                 @mousedown="startDrag('min')">
                 <div class="bg-white mt-1 text-[14px] text-center rounded-full text-[#757575] font-[600]">
-                    <span class="flag text-center w-[100px] border-2 bottom-[30px] -right-[35px] p-2 rounded-lg text-[#757575] font-[700]">
+                    <span class="flag text-center w-[100px] border-2 bottom-[30px] -right-[40px] p-2 rounded-lg text-[#757575] font-[700]">
                         {{ min }} <span class="uppercase">Feet</span>
                     </span>
                 </div>
@@ -459,4 +459,14 @@ function rgbToHex(rgb) {
     opacity: 0;
     transform: translateY(-10px);
   }
+  @media (max-width: 1366px) and (max-height: 800px) {
+    .screen-height {
+        height: 68vh;
+    }
+}
+  @media (max-width: 1366px) and (max-height: 650px) {
+    .screen-height {
+        height: 60vh;
+    }
+}
   </style>  
