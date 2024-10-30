@@ -135,7 +135,7 @@
     stroke-linecap: round;
     stroke-linejoin: round;
   }
-  @media(max-width:1280px){
+  @media(max-width:1366px){
     .logo img {
         width: 150px;
     }
