@@ -66,7 +66,7 @@ const nextSlide = () => {
   if (activeSlide.value < slides.length - 1) {
     activeSlide.value += 1;
   } else {
-    router.push('/dashboard');
+    router.push('/account-settings');
   }
 };
 </script>

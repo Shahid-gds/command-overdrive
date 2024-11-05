@@ -54,7 +54,7 @@
         </div>
       </div>
       <div class="border-t-2 mt-4">
-        <div v-if="isHelicopterView" class="flex justify-center items-center space-x-4 uppercase font-[600] text-white bg-[#D63D4A] p-4 rounded-lg mt-4">
+        <div v-if="!isHelicopterView" class="flex justify-center items-center space-x-4 uppercase font-[600] text-white bg-[#D63D4A] p-4 rounded-lg mt-4">
           <div>Helicopter View</div>
           <div>
             <img src="@/components/icons/helicopter.svg" alt="">
@@ -83,7 +83,7 @@
           <div class="text-[#878787] font-[500]">90 + MPH</div>
         </div>
       </div>
-      <div v-if="!isHelicopterView" class="screen-height h-[73vh] overflow-y-scroll pr-4 mt-4">
+      <div v-if="isHelicopterView" class="screen-height h-[74vh] overflow-y-scroll pr-4 mt-4">
         <div v-for="month in months" :key="month.name" class="mt-4">
           <button
             @click="toggle(month.name)"
@@ -143,7 +143,7 @@
           </transition>
         </div>
       </div>
-      <div v-if="isHelicopterView" class="helicopter-view h-[65vh] overflow-y-scroll pr-4 mt-4">
+      <div class="helicopter-view h-[65vh] overflow-y-scroll pr-4 mt-4">
         <div v-for="month in months" :key="month.name" class="mt-4">
           <button
             @click="toggle(month.name)"

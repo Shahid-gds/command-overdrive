@@ -1,6 +1,6 @@
 <template>
   <section class="flex">
-    <div class="fixed w-full z-40">
+    <div class="fixed w-full z-50">
       <navBar />
     </div>
     

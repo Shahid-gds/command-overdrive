@@ -110,56 +110,66 @@
                      <div class="w-full">
                         <div class="flex items-center space-x-2 border-b-2 border-[#AEAEAE] pb-3">
                             <div class="button b2" id="button-13">
-                                <input type="checkbox" class="checkbox">
-                                <div class="knobs">
-                                  <span></span>
+                                <input type="checkbox" class="toggle-checkbox" v-model="isMiles" />
+                                <div class="knobs" :class="{ 'on': isMiles, 'off': !isMiles }">
+                                    <span></span>
                                 </div>
-                                <div class="layer"></div>
-                              </div>
-                              <div class="font-[700]">Miles/kilmoters</div>
-                          </div>
+                                <div class="layer" :class="{ 'on-layer': isMiles, 'off-layer': !isMiles }"></div>
+                            </div>
+                            <div class="font-[700]" :class="{ 'text-black-500': isMiles, 'text-gray-500': !isMiles }">Miles/kilometers</div>
+                        </div>
                           <div class="flex items-center space-x-2 border-b-2 border-[#AEAEAE] py-3">
                             <div class="button b2" id="button-13">
-                                <input type="checkbox" class="checkbox">
-                                <div class="knobs">
+                                <input type="checkbox" class="toggle-checkbox" v-model="isDateFormat">
+                                <div class="knobs" :class="{ 'on': isDateFormat, 'off': !isDateFormat }">
                                   <span></span>
                                 </div>
-                                <div class="layer"></div>
+                                <div class="layer" :class="{ 'on-layer': isDateFormat, 'off-layer': !isDateFormat }"></div>
                               </div>
-                              <div class="font-[700]">Date Format 12/24 </div>
+                              <div class="font-[700]" :class="{ 'text-black-500': isDateFormat, 'text-gray-500': !isDateFormat }">Date Format 12/24 </div>
                           </div>
                      </div>
                      <div class="w-full">
-                        <div class="flex items-center space-x-2 border-b-2 border-[#AEAEAE] pb-3">
-                            <div class="button b2" id="button-13">
-                                <input type="checkbox" class="checkbox">
-                                <div class="knobs">
-                                  <span></span>
+                        <div class="checkbox-wrapper-45 flex items-center border-b-2 border-[#AEAEAE] pb-3">
+                            <input id="cbx-timezone" type="checkbox" v-model="isTimezone"/>
+                            <label class="cbx" for="cbx-timezone">
+                                <div class="flip">
+                                    <div class="front"></div>
+                                    <div class="back">
+                                        <svg width="16" height="14" viewBox="0 0 16 14">
+                                            <path d="M2 8.5L6 12.5L14 1.5"></path>
+                                        </svg>
+                                    </div>
                                 </div>
-                                <div class="layer"></div>
-                              </div>
-                              <div class="font-[700]">Timezone</div>
-                          </div>
-                          <div class="flex items-center space-x-2 border-b-2 border-[#AEAEAE] py-3">
-                            <div class="button b2" id="button-13">
-                                <input type="checkbox" class="checkbox">
-                                <div class="knobs">
-                                  <span></span>
+                            </label>
+                            <label class="text-[#000000] cursor-pointer ml-1 font-[700]" for="cbx-timezone">Timezone</label>
+                        </div>
+                        <div class="checkbox-wrapper-45 flex items-center border-b-2 border-[#AEAEAE] py-3">
+                            <input id="cbx-Currency" type="checkbox" />
+                            <label class="cbx" for="cbx-Currency">
+                                <div class="flip">
+                                    <div class="front"></div>
+                                    <div class="back">
+                                        <svg width="16" height="14" viewBox="0 0 16 14">
+                                            <path d="M2 8.5L6 12.5L14 1.5"></path>
+                                        </svg>
+                                    </div>
                                 </div>
-                                <div class="layer"></div>
-                              </div>
-                              <div class="font-[700]">Currency </div>
-                          </div>
+                            </label>
+                            <label class="text-[#000000] cursor-pointer ml-1 font-[700]" for="cbx-Currency">USD</label>
+                        </div>
                      </div>
             </div>
-            <div class="mt-8">
+          <div class="mt-8">
+            <router-link to="/alters?tab=alterSettings">
                 <button class="bg-[#D63D4A] flex space-x-1 items-center p-2 rounded-lg px-6 text-white">
                     <div>
                         <img src="@/components/icons/alter-setting.svg" alt="">
                     </div>
                     <div class="font-[600] uppercase">Alert Setting</div>
                 </button>
-            </div>
+            </router-link>
+          </div>
           </div>
         </div>
     </section>
@@ -261,6 +271,10 @@ const invoices = ref([
      },
 ]);
 
+ // Reactive states for the toggles
+ const isMiles = ref(false);
+    const isDateFormat = ref(false);
+    const isTimezone = ref(false);
 const itemsPerPage = 9;
 const currentPage = ref(1);
 
@@ -341,7 +355,7 @@ const paginatedUsers = computed(() => {
     height: 36px;
     overflow: hidden;
 }
-.checkbox
+.toggle-checkbox
 {
     position: relative;
     width: 100%;
@@ -413,15 +427,84 @@ const paginatedUsers = computed(() => {
     border-radius: 5px;
 }
 
-#button-13 .checkbox:checked + .knobs span
+#button-13 .toggle-checkbox:checked + .knobs span
 {
     left: 4px;
     background-color: #D63D4A;
     border-radius: 5px;
 }
 
-#button-13 .checkbox:checked ~ .layer
+#button-13 .toggle-checkbox:checked ~ .layer
 {
     background-color: white;
 }
+.checkbox-wrapper-45 {
+    position: relative;
+  }
+  
+  .checkbox-wrapper-45 input[type="checkbox"] {
+    display: none;
+    visibility: hidden;
+  }
+  .checkbox-wrapper-45 .cbx {
+    -webkit-perspective: 30;
+    perspective: 30;
+    display: inline-block;
+    border: 2px solid #D63D4A;
+    background: #e8e8eb;
+    border-radius: 4px;
+    transform: translate3d(0, 0, 0);
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  .checkbox-wrapper-45 .cbx:hover {
+    border-color: #D63D4A;
+  }
+  .checkbox-wrapper-45 .flip {
+    display: block;
+    transition: all 0.4s ease;
+    transform-style: preserve-3d;
+    position: relative;
+    width: 25px;
+    height: 25px;
+  }
+  .checkbox-wrapper-45 input[type="checkbox"]:checked + .cbx {
+    border-color: #D63D4A;
+  }
+  .checkbox-wrapper-45 input[type="checkbox"]:checked + .cbx .flip {
+    transform: rotateY(180deg);
+  }
+  .checkbox-wrapper-45 .front,
+  .checkbox-wrapper-45 .back {
+    backface-visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 25px;
+    height: 25px;
+    border-radius: 2px;
+  }
+  .checkbox-wrapper-45 .front {
+    background: #fff;
+    z-index: 1;
+  }
+  .checkbox-wrapper-45 .back {
+    transform: rotateY(180deg);
+    background: #D63D4A;
+    text-align: center;
+    color: #fff;
+    line-height: 25px;
+    box-shadow: 0 0 0 1px #D63D4A;
+  }
+  .checkbox-wrapper-45 .back svg {
+    margin-top: 5px;
+    margin-left: 5px;
+    fill: none;
+  }
+  .checkbox-wrapper-45 .back svg path {
+    stroke: #fff;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
   </style>

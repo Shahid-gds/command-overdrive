@@ -13,11 +13,13 @@
               </p>
             </div>
           <div class="w-[20%] flex justify-end">
-            <div class="button r" id="button-1">
-                <input type="checkbox" class="checkbox">
-                <div class="knobs"></div>
-                <div class="layer"></div>
+            <div class="button b2" id="button-13">
+              <input type="checkbox" class="checkbox" />
+              <div class="knobs">
+                <span></span>
               </div>
+              <div class="layer"></div>
+            </div>
           </div>
           </div>
           <div class="pt-3 flex space-x-4">
@@ -112,92 +114,96 @@
   </script>
   
   <style scoped>
-  .knobs, .layer
-  {
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-  }
-  .button
-  {
-      position: relative;
-      top: 50%;
-      width: 100px;
-      height: 36px;
-      overflow: hidden;
-  }
-  
-  .button.r, .button.r .layer
-  {
-      border-radius: 20px;
-  }
-  
-  .button.b2
-  {
-      border-radius: 2px;
-  }
-  
-  .checkbox
-  {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      padding: 0;
-      margin: 0;
-      opacity: 0;
-      cursor: pointer;
-      z-index: 3;
-  }
-  
-  .knobs
-  {
-      z-index: 2;
-  }
-  
-  .layer
-  {
-      width: 100%;
-      background-color: #636363;
-      transition: 0.3s ease all;
-      z-index: 1;
-  }
-  #button-1 .knobs:before
-  {
-      content: 'ON';
-      position: absolute;
-      top: 3px;
-      left: 4px;
-      width: 50px;
-      height: 30px;
-      color: #fff;
-      font-size: 16px;
-      font-weight: bold;
-      text-align: center;
-      line-height: 1;
-      padding: 7px 4px;
-      background-color: #D63D4A;
-      border-radius: 20px;
-      transition: 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15) all;
-  }
-  
-  #button-1 .checkbox:checked + .knobs:before
-  {
-      content: 'OFF';
-      left: 46.5px;
-      background-color: #D63D4A;
-  }
-  
-  #button-1 .checkbox:checked ~ .layer
-  {
-      background-color: #636363;
-  }
-  
-  #button-1 .knobs, #button-1 .knobs:before, #button-1 .layer
-  {
-      transition: 0.3s ease all;
-  }  
+  .knobs,
+.layer {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}
+
+.button {
+  position: relative;
+  width: 100px;
+  height: 36px;
+  overflow: hidden;
+}
+
+.checkbox {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 3;
+}
+
+.knobs {
+  z-index: 2;
+}
+
+.layer {
+  width: 100%;
+  background-color: #D63D4A;
+  transition: 0.3s ease all;
+  z-index: 1;
+  border-radius: 20px;
+}
+
+#button-13 .knobs:before,
+#button-13 .knobs:after,
+#button-13 .knobs span {
+  position: absolute;
+  top: 4px;
+  width: 20px;
+  height: 10px;
+  font-size: 10px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 1;
+  padding: 7px 4px;
+  border-radius: 2px;
+  transition: 0.3s ease all;
+}
+
+#button-13 .knobs:before,
+#button-13 .knobs:after {
+  z-index: 1;
+}
+
+#button-13 .knobs:before {
+  content: "ON";
+  left: 4px;
+  color: white;
+  font-size: 16px;
+}
+
+#button-13 .knobs:after {
+  content: "OFF";
+  right: -72px;
+  color: #8E8E8E;
+  font-size: 16px;
+}
+
+#button-13 .knobs span {
+  width: 40px;
+  height: 27px;
+  left: 55px;
+  background-color: #ffffff;
+  z-index: 2;
+  border-radius: 20px;
+}
+
+#button-13 .checkbox:checked + .knobs span {
+  left: 5px;
+  background-color: #ffffff;
+  border-radius: 20px;
+}
+
+#button-13 .checkbox:checked ~ .layer {
+  background-color: #DCDCDC;
+}  
   .dropdown-enter-active,
   .dropdown-leave-active {
     transition: opacity 0.3s ease, transform 0.3s ease;

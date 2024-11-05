@@ -1,18 +1,6 @@
 <template>
     <section class="bg-[rgb(232,232,232)] h-screen fixed z-40">
       <div class="mt-[2rem] pl-4 pr-2">
-       <div class="pb-2">
-        <router-link :to="{name : 'Onboarding'}" class="flex space-x-2 text-white rounded-lg font-[600] cursor-pointer uppercase justify-center px-4 bg-[#D63D4A] p-2">
-          <div>
-           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="4" stroke="currentColor" class="size-6">
-             <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-           </svg>          
-          </div>
-           <div>
-            add device
-          </div>
-         </router-link>
-       </div>
        <div class="relative pb-4">
         <input
           type="search"
