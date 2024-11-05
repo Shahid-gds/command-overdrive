@@ -43,7 +43,7 @@
         <table class="w-full">
           <thead class="border-gray-300">
             <tr class="text-xs text-left">
-              <th class="border-r-2 border-b-2 p-2 py-6">Alert #</th>
+              <th class="border-r-2 border-b-2 p-2 py-6">Temp #</th>
               <th class="border-r-2 border-b-2 p-2">Vehicle ID</th>
               <th class="border-r-2 border-b-2 p-2 w-1/2">Description</th>
               <th class="border-r-2 border-b-2 p-2">Date Time</th>
