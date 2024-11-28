@@ -31,7 +31,7 @@
                     <div class="w-full">
                         <div class="font-bold">Passowrd</div>
                         <div>
-                            <input class="pb-4 bg-transparent outline-none w-full" type="passowrd" v-model="passowrd">
+                            <input class="pb-4 bg-transparent outline-none w-full" type="passowrd" v-model="passowrd" readonly>
                         </div>
                     </div>
                     <div class="flex items-center">
@@ -47,7 +47,7 @@
                     <div class="w-full">
                         <div class="font-bold">Email</div>
                         <div>
-                            <input class="pb-4 w-full bg-transparent outline-none" type="email" v-model="email">
+                            <input class="pb-4 w-full bg-transparent outline-none" type="email" v-model="email" readonly>
                         </div>
                     </div>
                     <div class="flex items-center">
@@ -65,7 +65,7 @@
                     <div class="w-full">
                         <div class="font-bold">Username </div>
                         <div>
-                            <input class="pb-4 w-full bg-transparent outline-none" type="text" v-model="userName">
+                            <input class="pb-4 w-full bg-transparent outline-none" type="text" v-model="userName" readonly>
                         </div>
                     </div>
                     <div class="flex items-center">
@@ -81,7 +81,7 @@
                     <div class="w-full">
                         <div class="font-bold">Phone </div>
                         <div>
-                            <input class="pb-4 w-full bg-transparent outline-none" type="text" v-model="phone">
+                            <input class="pb-4 w-full bg-transparent outline-none" type="text" v-model="phone" readonly>
                         </div>
                     </div>
                     <div class="flex items-center">
@@ -97,7 +97,7 @@
                     <div class="w-full">
                         <div class="font-bold">Mailing Address</div>
                         <div>
-                            <textarea class="pb-4 w-full bg-transparent outline-none" v-model="address" rows="2"></textarea>
+                            <textarea class="pb-4 w-full bg-transparent outline-none" v-model="address" rows="2" readonly></textarea>
                         </div>
                     </div>
                     <div class="flex items-center">

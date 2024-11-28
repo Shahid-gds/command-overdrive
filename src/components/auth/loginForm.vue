@@ -20,22 +20,79 @@
         <div class="pb-4">
           <input 
             type="email" placeholder="Enter Your Email Address"
-            class="w-full border-[0.5px] border-[#a0a0a0] p-3.5 px-6 rounded-lg outline-none placeholder:text-[#808080]" />
+            class="w-full border border-[#a0a0a0] p-3.5 px-6 rounded-lg outline-none placeholder:text-[#808080]" 
+            :class="{ 'border-red-500 border-2': emptyFields.includes('email') }"
+            v-model="email"
+            required
+            @input="
+              removeEmptyField('email');
+              email = email.toLocaleLowerCase(); "
+            @keypress.enter="triggerEnter" >
         </div>
-        <div class="pb-4">
-          <input type="text" placeholder="Enter Your Password"
-            class="w-full border-[0.5px] border-[#a0a0a0] p-3.5 px-6 rounded-lg outline-none placeholder:text-[#808080]" />
+        <div class="pb-4 relative">
+          <input placeholder="Enter Your Password"
+            class="w-full border border-[#a0a0a0] p-3.5 px-6 rounded-lg outline-none placeholder:text-[#808080]" 
+            :class="{ 'border-red-500 border-2': emptyFields.includes('password') }"
+            :type="passwordVisible ? 'text' : 'password'" v-model="password" required
+            @input="removeEmptyField('password')" @keypress.enter="triggerEnter" >
+            <div class="absolute right-4 top-0 mt-4 mr-2 cursor-pointer" @click="togglePasswordVisibility">
+              <svg v-if="passwordVisible" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                width="25" height="20" viewBox="0 0 25 16.093">
+                <defs>
+                  <clipPath id="clip-path">
+                    <rect id="Rectangle_119" data-name="Rectangle 119" width="25" height="16.093" fill="#818181" />
+                  </clipPath>
+                </defs>
+                <g id="Group_60" data-name="Group 60" transform="translate(0 0)">
+                  <g id="Group_59" data-name="Group 59" transform="translate(0 0)" clip-path="url(#clip-path)">
+                    <path id="Path_185" data-name="Path 185"
+                      d="M160.439,74.24a4.023,4.023,0,1,0,4.023,4.023,4.026,4.026,0,0,0-4.023-4.023m-.305,2.83a.924.924,0,0,0-.916.916h-1.332a2.274,2.274,0,0,1,2.248-2.248Z"
+                      transform="translate(-147.939 -70.217)" fill="#818181" />
+                    <path id="Path_186" data-name="Path 186"
+                      d="M24.709,7.214C23.349,5.522,18.494,0,12.5,0S1.651,5.522.291,7.214a1.335,1.335,0,0,0,0,1.665c1.36,1.693,6.215,7.214,12.209,7.214s10.849-5.522,12.209-7.214a1.335,1.335,0,0,0,0-1.665M12.5,13.874a5.827,5.827,0,1,1,5.827-5.827A5.826,5.826,0,0,1,12.5,13.874"
+                      transform="translate(0)" fill="#818181" />
+                  </g>
+                </g>
+              </svg>
+              <svg v-if="!passwordVisible" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                width="25" height="19.509" viewBox="0 0 25 19.509">
+                <defs>
+                  <clipPath id="clip-path">
+                    <rect id="Rectangle_119" data-name="Rectangle 119" width="25" height="16.093" fill="#818181" />
+                  </clipPath>
+                </defs>
+                <g id="Group_1719" data-name="Group 1719" transform="translate(-451.156 -19.661)">
+                  <g id="Group_60" data-name="Group 60" transform="translate(451.156 21.804)">
+                    <g id="Group_59" data-name="Group 59" transform="translate(0 0)" clip-path="url(#clip-path)">
+                      <path id="Path_185" data-name="Path 185"
+                        d="M160.439,74.24a4.023,4.023,0,1,0,4.023,4.023,4.026,4.026,0,0,0-4.023-4.023m-.305,2.83a.924.924,0,0,0-.916.916h-1.332a2.274,2.274,0,0,1,2.248-2.248Z"
+                        transform="translate(-147.939 -70.217)" fill="#818181" />
+                      <path id="Path_186" data-name="Path 186"
+                        d="M24.709,7.214C23.349,5.522,18.494,0,12.5,0S1.651,5.522.291,7.214a1.335,1.335,0,0,0,0,1.665c1.36,1.693,6.215,7.214,12.209,7.214s10.849-5.522,12.209-7.214a1.335,1.335,0,0,0,0-1.665M12.5,13.874a5.827,5.827,0,1,1,5.827-5.827A5.826,5.826,0,0,1,12.5,13.874"
+                        transform="translate(0)" fill="#818181" />
+                    </g>
+                  </g>
+                  <path id="Path_14789" data-name="Path 14789" d="M3.71,2.673,22.259,20.749"
+                    transform="translate(450.5 17.705)" fill="none" stroke="#818181" stroke-width="2" />
+                </g>
+              </svg>
+            </div>
         </div>
-        <div class="pb-4">
-          <router-link
-            :to="{ name: 'AuthOnboarding' }"
+        <div class="pb-2">
+          <button ref="triggerEnterButton" @click.prevent="login" :disabled="processing"
             class="submit-btn hover-btn text-xl text-center w-full p-3.5 rounded-lg text-white bg-gradient-to-b from-[#b72b33] bg-[#962d34] font-[700] uppercase">
-            Login Now
-            </router-link>
+            {{ processing ? 'Please Wait...' :  ' Login Now' }}
+            </button>
+        </div>
+        <div class="h-4 pb-4">
+          <p class="text-lg text-red-500 text-center" v-if="responseMessage.includes('Please verify you OTP before logging in')">{{ responseMessage }} 
+            <router-link :to="{ name: 'ResetPassword' }" class="underline">Verify OTP!</router-link>
+          </p>
+          <p class="text-lg text-red-500 text-center" v-if="!responseMessage.includes('Please verify you OTP before logging in')">{{ responseMessage }}</p>
         </div>
         <div class="flex justify-between">
           <div class="checkbox-wrapper-45 flex items-center">
-            <input id="cbx-45" type="checkbox"/>
+            <input v-model="rememberMe" id="cbx-45" type="checkbox"/>
             <label class="cbx" for="cbx-45">
               <div class="flip">
                 <div class="front"></div>
@@ -67,7 +124,108 @@
     </div>
   </section>
 </template>
+<script setup>
+import { ref, watch, onUnmounted, onMounted } from 'vue';
+import { getCookie, setCookie, deleteCookie } from '@/components/utils/cookiesController';
+import axios from 'axios';
+import { useRouter } from 'vue-router';
+import { useApi } from '../api/useApi';
+const { getApiUrl } = useApi();
+const apiUrl = getApiUrl();
+const email = ref('');
+const password = ref('');
+const passwordVisible = ref(false);
+const emptyFields = ref([]);
+const responseMessage = ref('');
+const processing = ref(false);
+const rememberMe = ref(false);
+const router = useRouter();
 
+const togglePasswordVisibility = () => {
+  passwordVisible.value = !passwordVisible.value
+}
+
+const triggerEnterButton = ref(null);
+
+const triggerEnter = () => {
+  if (triggerEnterButton.value) {
+    triggerEnterButton.value.click();
+  }
+}
+
+emptyFields.value = [];
+
+const removeEmptyField = (fieldName) => {
+  const index = emptyFields.value.indexOf(fieldName);
+
+  if (index !== -1 && fieldName === 'email' && email.value.trim() !== '') {
+    emptyFields.value.splice(index, 1);
+  }
+  else if (index !== -1 && fieldName === 'password' && password.value.trim() !== '') {
+    emptyFields.value.splice(index, 1);
+  }
+}
+const setLoginTokenCookie = (token) => {
+  setCookie('token', token, 7);
+}
+const login = async () => {
+  if (!email.value || !password.value) {
+    responseMessage.value = "Please fill in the required fields!";
+    if (!email.value) emptyFields.value.push('email');
+    if (!password.value) emptyFields.value.push('password');
+    return;
+  }
+  if (!email.value.includes('@')) {
+    responseMessage.value = "Please enter a valid email address!";
+    emptyFields.value.push('email');
+    return;
+  }
+
+  try {
+    processing.value = true;
+    const response = await axios.post(`${apiUrl}/users/login`, {
+      email: email.value,
+      password: password.value,
+    }, {
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    });
+    responseMessage.value = 'User Logged in successfully!';
+    const token = response.data.token;
+    setLoginTokenCookie(token);
+    router.replace('/auth-onboarding');
+  } catch (error) {
+    if (error.response) {
+      if (error.response.status === 401) {
+        responseMessage.value = 'Incorrect Email or Password';
+      } else if (error.response.status === 403) {
+        responseMessage.value = 'Please verify you OTP before logging in';
+      } else {
+        responseMessage.value = error.response.data.message || 'Something went wrong. Please try again later!';
+      }
+    } else if (error.request) {
+      responseMessage.value = 'No response from the server. Please try again later!';
+    } else {
+      responseMessage.value = `Error: ${error.message}`;
+    }
+  } finally {
+    processing.value = false;
+  }
+}
+const responseMessageTimeout = ref(null);
+
+watch(responseMessage, (newValue) => {
+  clearTimeout(responseMessageTimeout.value);
+  responseMessageTimeout.value = setTimeout(() => {
+    responseMessage.value = '';
+  }, 9000);
+});
+onUnmounted(() => {
+  clearTimeout(responseMessageTimeout.value);
+});
+
+</script>
 <style scoped>
 .checkbox-wrapper-45 {
   position: relative;
