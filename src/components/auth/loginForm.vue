@@ -165,8 +165,9 @@ const removeEmptyField = (fieldName) => {
     emptyFields.value.splice(index, 1);
   }
 }
-const setLoginTokenCookie = (token) => {
+const setLoginTokenCookie = (token, userId) => {
   setCookie('token', token, 7);
+  setCookie('user-id', userId, 7);
 }
 const login = async () => {
   if (!email.value || !password.value) {
@@ -193,7 +194,8 @@ const login = async () => {
     });
     responseMessage.value = 'User Logged in successfully!';
     const token = response.data.token;
-    setLoginTokenCookie(token);
+    const userId = response.data.data.user._id;
+    setLoginTokenCookie(token, userId);
     router.replace('/auth-onboarding');
   } catch (error) {
     if (error.response) {
