@@ -94,6 +94,12 @@ const router = createRouter({
       component: () => import("@/pages/command.vue"),
     },
     {
+      path: "/enter-imei/:id",
+      name: "enterIMEI",
+      // meta: { layout: "Default" },
+      component: () => import("@/components/layout/commandTabs.vue/enterIMEI.vue"),
+    },
+    {
       path: "/helicopter-view",
       name: "HelicopterView",
       // meta: { layout: "Default" },

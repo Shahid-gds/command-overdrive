@@ -1,5 +1,5 @@
 <template>
-    <section class="">
+    <section v-if="isIMEI" class="">
      <div class="pb-4">
         <div class="flex justify-between border-b-[1px] py-2 px-3 border-[#C8C8C8]">
             <div class="text-center">
@@ -7,7 +7,7 @@
                     <img src="@/components/icons/black-lock.svg" alt="">
                 </div>
                 <div class="font-[700] uppercase text-[14px]">Lock</div>
-                <div class="text-[#D63D4A] text-[13px]">Locked</div>
+                <div class="text-[#] text-[13px]">Locked</div>
             </div>
             <div class="text-center">
                 <div class="flex justify-center pb-1.5">
@@ -195,6 +195,17 @@
     
     </section>
     <addVehicle  :show="showAddVehicleModal" :onClose="colseVehicleModal" />
+    <section class="mt-[3rem]">
+        <div>
+            <p class="text-center">We just need to link your command <br> device to your account.</p>
+           <div class="flex justify-center mt-[3rem]">
+            <img class="w-1/2" src="@/assets/images/stepThree-img.svg" alt="">
+           </div>
+           <div class="flex justify-center mt-[2rem]">
+            <router-link :to="{name: 'enterIMEI'}" class="uppercase bg-[#D63D4A] p-2 px-10 text-white text-[20px] rounded-lg">enter imei</router-link>
+           </div>
+        </div>
+    </section>
 </template>
 <script setup>
  import { onMounted, ref } from "vue";
@@ -207,6 +218,8 @@ const openAddVehicleModal = () => {
 const colseVehicleModal = () => {
     showAddVehicleModal.value = false;
 };
+
+const isIMEI = ref(false);
 </script>
 <style scoped>
 ::-webkit-scrollbar {

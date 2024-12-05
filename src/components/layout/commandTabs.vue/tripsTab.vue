@@ -1,5 +1,5 @@
 <template>
-  <section class="">
+  <section v-if="isIMEI" class="">
     <div class="pb-4 relative">
       <div class="pt-2 flex space-x-3">
         <div class="w-full flex space-x-3 items-center">
@@ -205,6 +205,17 @@
       </div>
     </div>
   </section>
+  <section class="mt-[3rem]">
+    <div>
+        <p class="text-center">We just need to link your command <br> device to your account.</p>
+       <div class="flex justify-center mt-[3rem]">
+        <img class="w-1/2" src="@/assets/images/stepThree-img.svg" alt="">
+       </div>
+       <div class="flex justify-center mt-[2rem]">
+        <router-link :to="{name: 'enterIMEI'}" class="uppercase bg-[#D63D4A] p-2 px-10 text-white text-[20px] rounded-lg">enter imei</router-link>
+       </div>
+    </div>
+</section>
 </template>
 
 <script setup>
@@ -212,6 +223,8 @@ import { computed, ref } from "vue";
 import { useRouter, useRoute } from "vue-router";
 const router = useRouter();
 const route = useRoute();
+
+const isIMEI = ref(false)
 
 const selectedOption = "CVS";
 const dropdownVisible = ref(false);

@@ -9,33 +9,37 @@
                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                           </svg>                          
                     </div>
-                    <div class="uppercase">Add Vehicle</div>
+                    <router-link :to="{name : 'Onboarding'}" class="uppercase">Add Vehicle</router-link>
                 </div>
             </div>
             <div class="bg-[#E8E8E8] p-4 rounded-lg flex flex-col space-y-4">
                 <div v-for="invoice in paginatedInvoices" :key="invoice.id" class="flex justify-between space-x-10">
-                  <div class="w-full flex justify-between items-center pt-4 border-b-2 border-[#AEAEAE] space-x-2">
-                    <div class="flex items-center space-x-2 pb-3">
+                  <div class="w-full flex justify-between items-center pt-4 border-b-2 border-[#AEAEAE] space-x-10">
+                    <div class="w-full flex items-center space-x-2 pb-3">
                         <div>
                             <img src="../../assets/images/car-img-red.svg" alt="">
                         </div>
                       <div>
                         <div class="font-[600]">Serial #{{ invoice.sNo }}</div>
                         <div class="pb-2">
-                            <span>{{ invoice.nickName }} | </span> <span>{{invoice.made}} | </span> <span>{{invoice.model}}</span>
+                            <span>{{ invoice.nickName }} | </span> <span>{{invoice.made}} | </span> <span>{{invoice.year}}</span>
                         </div>
                       </div>
                     </div>
-                    <div class="bg-[white] p-2 rounded-full px-6 font-[600] uppercase">
+                  <div class="w-1/2">
+                    <div class="bg-[white] text-center p-2 rounded-full px-6 font-[600] uppercase">
                         {{ invoice.btnAdvanced }}
                     </div>
+                  </div>
+                   <div class="w-1/2 text-center">
                     <div v-if="invoice.status === 'Inactive'" class="bg-[#FFB5BB] text-[#78171F] p-2 rounded-full px-6 font-[600] uppercase">
                         {{ invoice.status }}
                     </div>
                     <div v-if="invoice.status === 'Active'" class="bg-[#A6E99B] text-[#102D0C] p-2 rounded-full px-6 font-[600] uppercase">
                         {{ invoice.status }}
                     </div>
-                    <div class="">
+                   </div>
+                    <div class="w-1/2 text-center">
                         <div class="p-2 px-4 bg-[#D63D4A] font-[600] rounded-lg text-white cursor-pointer uppercase">Change</div>
                     </div>
                   </div>
@@ -48,8 +52,7 @@
                         :class="[
                             'cursor-pointer w-6 h-6 text-center rounded-full',
                             currentPage === page ? 'bg-[#D63D4A] text-white' : ''
-                        ]"
-                    >
+                        ]">
                         {{ page }}
                     </span>
                 </div>
@@ -176,105 +179,41 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted } from 'vue';
+import { useApi } from '@/components/api/useApi';
 
-const invoices = ref([
-    { 
-        id: 1, 
-        No: '123456789', 
-        nickName: 'Nickname here',
-        made: 'Chevy Cruze',
-        model: '2021',
-        btnAdvanced: 'Advanced',
-        status: 'Inactive', 
-     },
-    { 
-        id: 2, 
-        No: '123456789', 
-        nickName: 'Nickname here',
-        made: 'Chevy Cruze',
-        model: '2021',
-        btnAdvanced: 'Advanced',
-        status: 'Inactive', 
-     },
-    { 
-        id: 3, 
-        No: '123456789', 
-        nickName: 'Nickname here',
-        made: 'Chevy Cruze',
-        model: '2021',
-        btnAdvanced: 'Advanced',
-        status: 'Active', 
-     },
-    { 
-        id: 4, 
-        No: '123456789', 
-        nickName: 'Nickname here',
-        made: 'Chevy Cruze',
-        model: '2021',
-        btnAdvanced: 'Advanced',
-        status: 'Active', 
-     },
-    { 
-        id: 5, 
-        No: '123456789', 
-        nickName: 'Nickname here',
-        made: 'Chevy Cruze',
-        model: '2021',
-        btnAdvanced: 'Advanced',
-        status: 'Active', 
-     },
-    { 
-        id: 6, 
-        No: '123456789', 
-        nickName: 'Nickname here',
-        made: 'Chevy Cruze',
-        model: '2021',
-        btnAdvanced: 'Advanced',
-        status: 'Active', 
-     },
-    { 
-        id: 7, 
-        No: '123456789', 
-        nickName: 'Nickname here',
-        made: 'Chevy Cruze',
-        model: '2021',
-        btnAdvanced: 'Advanced',
-        status: 'Active', 
-     },
-    { 
-        id: 8, 
-        No: '123456789', 
-        nickName: 'Nickname here',
-        made: 'Chevy Cruze',
-        model: '2021',
-        btnAdvanced: 'Advanced',
-        status: 'Active', 
-     },
-    { 
-        id: 9, 
-        No: '123456789', 
-        nickName: 'Nickname here',
-        made: 'Chevy Cruze',
-        model: '2021',
-        btnAdvanced: 'Advanced',
-        status: 'Active', 
-     },
-    { 
-        id: 10, 
-        No: '123456789', 
-        nickName: 'Nickname here',
-        made: 'Chevy Cruze',
-        model: '2021',
-        btnAdvanced: 'Advanced',
-        status: 'Active', 
-     },
-]);
+const { getApiUrl } = useApi();
+const apiUrl = getApiUrl();
 
- // Reactive states for the toggles
- const isMiles = ref(false);
-    const isDateFormat = ref(false);
-    const isTimezone = ref(false);
+const invoices = ref([]);
+const fetchVehicles = async () => {
+    try {
+      const response = await fetch(`${apiUrl}/vehicles/getMe`);
+      const data = await response.json();
+
+      if (data.data && Array.isArray(data.data.vehicles)) {
+        invoices.value = data.data.vehicles.map((item) => ({
+          id: item._id,
+          nickName: item.nickname,
+          made: item.make, 
+          model: item.model, 
+          year: item.year,
+          btnAdvanced: 'Advanced',
+          status: item.status || 'Inactive',
+        }));
+      } else {
+        console.error('Unexpected API response format. "vehicles" array not found.', data);
+      }
+    } catch (error) {
+      console.error('Error fetching vehicles:', error);
+    }
+  };
+
+// Fetch vehicles when the component mounts
+onMounted(() => {
+    fetchVehicles();
+});
+
 const itemsPerPage = 9;
 const currentPage = ref(1);
 
@@ -284,61 +223,8 @@ const paginatedInvoices = computed(() => {
     const start = (currentPage.value - 1) * itemsPerPage;
     return invoices.value.slice(start, start + itemsPerPage);
 });
-
-const users = ref([
-    { 
-        id: 1, 
-        name: 'Jhon Smith', 
-        email: 'jhonsmith@gmail.com',
-        vehicle: 'Vehicle Here...',
-     },
-    { 
-        id: 2, 
-        name: 'Jhon Smith', 
-        email: 'jhonsmith@gmail.com',
-        vehicle: 'Vehicle Here...',
-     },
-    { 
-        id: 3, 
-        name: 'Jhon Smith', 
-        email: 'jhonsmith@gmail.com',
-        vehicle: 'Vehicle Here...',
-     },
-    { 
-        id: 4, 
-        name: 'Jhon Smith', 
-        email: 'jhonsmith@gmail.com',
-        vehicle: 'Vehicle Here...',
-     },
-    { 
-        id: 5, 
-        name: 'Jhon Smith', 
-        email: 'jhonsmith@gmail.com',
-        vehicle: 'Vehicle Here...',
-     },
-    { 
-        id: 6, 
-        name: 'Jhon Smith', 
-        email: 'jhonsmith@gmail.com',
-        vehicle: 'Vehicle Here...',
-     },
-    { 
-        id: 7, 
-        name: 'Jhon Smith', 
-        email: 'jhonsmith@gmail.com',
-        vehicle: 'Vehicle Here...',
-     },
-]);
-const userPerPage = 6;
-const currentUsers = ref(1);
-
-const totalUsers = computed(() => Math.ceil(users.value.length / userPerPage));
-
-const paginatedUsers = computed(() => {
-    const start = (currentUsers.value - 1) * userPerPage;
-    return users.value.slice(start, start + userPerPage);
-});
 </script>
+
 
 <style scoped>
  .knobs, .layer

@@ -23,9 +23,9 @@
           </div>
         </div>
         <div class="h-screen">
-          <div class="main-rounters overflow-y-scroll h-[75vh] pb-2 pr-3">
+          <div class="main-rounters h-[76vh] overflow-y-scroll pr-3 pb-2">
             <router-link
-              class="flex items-center space-x-2 py-3 px-1 transition-all duration-300 ease-in-out border-b-[1px] border-[#C2C2C2]"
+              class="flex items-center justify-between space-x-2 py-3 px-1 transition-all duration-300 ease-in-out border-b-[1px] border-[#C2C2C2]"
               v-for="item in menu"
               :key="item.id"
               :to="`/dashboard/${item.id}`"
@@ -34,25 +34,25 @@
                   $route.path === `/dashboard/${item.id}`,
                 '' : $route.path !== `/dashboard/${item.id}`,}">
               <div class="relative">
-                <span>
-                  <img :src="item.carImg">
+                <span class="">
+                  <img class="w-36 border-2 border-[#B9B9B9] rounded-lg" :src="item.carImg">
                 </span>
                 <span v-if="item.active" class="w-4 h-4 border-white border-2 bg-[#E82031] absolute -top-1 -left-1.5 rounded-full"></span>
                 <span v-if="item.unactive" class="w-4 h-4 border-white border-2 bg-[#2BE31E] absolute -top-1 -left-1.5 rounded-full"></span>
               </div>
-              <div class="">
+              <div class="w-full">
                 <div class="text-[#000000] text-[14px] font-[600]">
                   {{ item.name }}
                 </div>
                 <div class="text-[12px] text-[#434343]">
-                  {{ item.made }} - {{ item.model }}
+                  {{ item.made }} - {{ item.year }}
                 </div>
               </div>
               <div class="h-[50px] w-[2px] bg-[#CCCCCC]"></div>
-              <div class="flex w-[30%] justify-center">
+              <div class="flex w-[50%] justify-center">
                 <div class="w-full">
                   <div class="flex justify-center">
-                    <img :src="item.icon" alt="">
+                    Status
                   </div>
                   <div class="uppercase text-center text-[12px] text-[#E82031] font-[600]">
                     {{ item.status }}
@@ -68,215 +68,43 @@
   </template>
   
   <script setup>
-  import { onMounted, ref } from "vue";
   import { RouterLink } from "vue-router";
-const menu = ref([
-    {
-      id: '1',
-      carImg: import("@/assets/images/car-img-red.svg").then(
-        (module) => module.default
-      ),
-      icon: import("@/components/icons/driver.svg").then(
-        (module) => module.default
-      ),
-      name: "Nick Name Here...",
-      made: "Chevy Cruze",
-      model: "2021",
-      status: "driving",
-      active: " ",
-    },
-    {
-      id:'2',
-      carImg: import("@/assets/images/car-img-white.svg").then(
-        (module) => module.default
-      ),
-      icon: import("@/components/icons/idle.svg").then(
-        (module) => module.default
-      ),
-      name: "Nick Name Here...",
-      made: "Chevy Cruze",
-      model: "2021",
-      status: "idle",
-      unactive: " ",
-    },
-    {
-      id: '3',
-      carImg: import("@/assets/images/car-img-black.svg").then(
-        (module) => module.default
-      ),
-      icon: import("@/components/icons/lock.svg").then(
-        (module) => module.default
-      ),
-      name: "Nick Name Here...",
-      made: "Chevy Cruze",
-      model: "2021",
-      status: "locked",
-      active: " ",
-    },
-    {
-      id:'4',
-      carImg: import("@/assets/images/car-img-red.svg").then(
-        (module) => module.default
-      ),
-      icon: import("@/components/icons/unlock.svg").then(
-        (module) => module.default
-      ),
-      name: "Nick Name Here...",
-      made: "Chevy Cruze",
-      model: "2021",
-      status: "unlock",
-      active: " ",
-    },
-    {
-      id: '5',
-      carImg: import("@/assets/images/car-img-white.svg").then(
-        (module) => module.default
-      ),
-      icon: import("@/components/icons/disable.svg").then(
-        (module) => module.default
-      ),
-      name: "Nick Name Here...",
-      made: "Chevy Cruze",
-      model: "2021",
-      status: "disabled",
-      active: " ",
-    },
-    {
-      id: '6',
-      carImg: import("@/assets/images/car-img-black.svg").then(
-        (module) => module.default
-      ),
-      icon: import("@/components/icons/car.svg").then(
-        (module) => module.default
-      ),
-      name: "Nick Name Here...",
-      made: "Chevy Cruze",
-      model: "2021",
-      status: "impounded",
-      active: " ",
-    },
-    {
-      id: '7',
-      carImg: import("@/assets/images/car-img-red.svg").then(
-        (module) => module.default
-      ),
-      icon: import("@/components/icons/disconnected.svg").then(
-        (module) => module.default
-      ),
-      name: "Nick Name Here...",
-      made: "Chevy Cruze",
-      model: "2021",
-      status: "Disconnected",
-      active: " ",
-    },
-    {
-      id: '8',
-      carImg: import("@/assets/images/car-img-red.svg").then(
-        (module) => module.default
-      ),
-      icon: import("@/components/icons/driver.svg").then(
-        (module) => module.default
-      ),
-      name: "Nick Name Here...",
-      made: "Chevy Cruze",
-      model: "2021",
-      status: "driving",
-      active: " ",
-    },
-    {
-      id: '9',
-      carImg: import("@/assets/images/car-img-white.svg").then(
-        (module) => module.default
-      ),
-      icon: import("@/components/icons/idle.svg").then(
-        (module) => module.default
-      ),
-      name: "Nick Name Here...",
-      made: "Chevy Cruze",
-      model: "2021",
-      status: "idle",
-      unactive: " ",
-    },
-    {
-      id:'10',
-      carImg: import("@/assets/images/car-img-black.svg").then(
-        (module) => module.default
-      ),
-      icon: import("@/components/icons/lock.svg").then(
-        (module) => module.default
-      ),
-      name: "Nick Name Here...",
-      made: "Chevy Cruze",
-      model: "2021",
-      status: "locked",
-      active: " ",
-    },
-    {
-      id: '10',
-      carImg: import("@/assets/images/car-img-red.svg").then(
-        (module) => module.default
-      ),
-      icon: import("@/components/icons/unlock.svg").then(
-        (module) => module.default
-      ),
-      name: "Nick Name Here...",
-      made: "Chevy Cruze",
-      model: "2021",
-      status: "unlock",
-      active: " ",
-    },
-    {
-      id: '11',
-      carImg: import("@/assets/images/car-img-white.svg").then(
-        (module) => module.default
-      ),
-      icon: import("@/components/icons/disable.svg").then(
-        (module) => module.default
-      ),
-      name: "Nick Name Here...",
-      made: "Chevy Cruze",
-      model: "2021",
-      status: "disabled",
-      active: " ",
-    },
-    {
-      id: '12',
-      carImg: import("@/assets/images/car-img-black.svg").then(
-        (module) => module.default
-      ),
-      icon: import("@/components/icons/car.svg").then(
-        (module) => module.default
-      ),
-      name: "Nick Name Here...",
-      made: "Chevy Cruze",
-      model: "2021",
-      status: "impounded",
-      active: " ",
-    },
-    {
-      id: '13',
-      carImg: import("@/assets/images/car-img-red.svg").then(
-        (module) => module.default
-      ),
-      icon: import("@/components/icons/disconnected.svg").then(
-        (module) => module.default
-      ),
-      name: "Nick Name Here...",
-      made: "Chevy Cruze",
-      model: "2021",
-      status: "Disconnected",
-      active: " ",
-    },
-  ]);
+  import { onMounted, ref } from 'vue';
+  import { useApi } from '@/components/api/useApi';
   
-  onMounted(async () => {
-    menu.value = await Promise.all(
-      menu.value.map(async (item) => ({
-        ...item,
-        carImg: await item.carImg,
-        icon: await item.icon,
-      }))
-    );
+  const { getApiUrl } = useApi();
+  const apiUrl = getApiUrl();
+  
+  const menu = ref([]);
+  
+  const fetchVehicles = async () => {
+    try {
+      const response = await fetch(`${apiUrl}/vehicles/getMe`);
+      const data = await response.json();     
+    
+      if (data.data && Array.isArray(data.data.vehicles)) {
+        menu.value = data.data.vehicles.map((item) => ({
+          id: item._id,   
+          carImg: item.photo,
+          icon: item.photo,  
+          name: item.nickname,   
+          made: item.make,  
+          model: item.model, 
+          year: item.year,
+          // status: item.license_plate,
+          active: 'active',         
+          unactive: '',
+        }));
+      } else {
+        console.error('Unexpected API response format. "vehicles" array not found.', data);
+      }
+    } catch (error) {
+      console.error('Error fetching vehicles:', error);
+    }
+  };
+  
+  onMounted(() => {
+    fetchVehicles();
   });
   </script>
   

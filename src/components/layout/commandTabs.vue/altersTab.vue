@@ -21,7 +21,7 @@
               </TransitionGroup>
               </div>
         </div>
-        <div v-if="!isSettingsVisible" class="screen-height max-h-[75vh] overflow-y-scroll pr-4 mt-6 ">
+        <div v-if="!isSettingsVisible && !isNotification" class="screen-height max-h-[75vh] overflow-y-scroll pr-4 mt-6 ">
             <div class="flex space-x-4 border-b-2 pb-4 border-[#D4D4D4]">
               <div>
                 <div class="bg-[#D63D4A] p-2 rounded-full w-[50px] h-[50px] pt-2.5">
@@ -240,12 +240,27 @@
         <div v-if="isSettingsVisible">
             <settings />
         </div>
+
+        <div v-if="isNotification && !isSettingsVisible" class="">
+          <div class="flex justify-center mt-[5rem]">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#585858" class="size-20">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" />
+            </svg> 
+          </div>
+          <div class="text-center mt-6 text-[#585858]">
+            <h1 class="text-[22px] font-[500]">No driving alerts, yet!</h1>
+            <p>Just keep driving and check back later!</p>
+          </div> 
+          </div>
     </section>
 </template>
 
 <script setup>
 import { ref } from 'vue';
 import settings from '../notifications/settings.vue';
+
+
+const isNotification = ref(true)
 
 const isAccountToggleShow = ref(false);
 const isSettingsVisible = ref(false);

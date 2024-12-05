@@ -29,11 +29,15 @@
         <div class="w-full flex space-x-3">
           <div v-for="(digit, index) in codeDigits" :key="index" class="inline-block w-[50px] text-center">
             <input v-model="codeDigits[index]" type="text"
-              class="border-[1.5px] border-[#989898] w-full outline-none  text-center h-[50px] rounded-lg font-[600] text-[#808080]"
+              class="border-[1.5px] border-[#989898] w-full outline-none text-center h-[50px] rounded-lg font-[600] text-[#808080]"
               maxlength="1" @paste="handlePaste($event, index)"  
-              @input="handleInput($event, index)"
-              @keydown="handleKeyDown($event, index)">
+              @input="handleInput($event, index)" @keydown="handleKeyDown($event, index)"
+              :class="{'border-red-500': !isValidDigit(index)}">
           </div>
+        </div>
+        <p v-if="formError" class="text-red-500 text-sm mt-2">Please enter valid 8-digit SN (digits only).</p>
+        <div class="flex justify-between mt-4">
+          <button @click="skip" class="bg-gray-300 text-white py-2 px-4 rounded-md">Skip for Now</button>
         </div>
       </div>
     </div>
@@ -42,16 +46,20 @@
 
 <script setup>
 import { ref, watch } from 'vue';
+import { useRouter } from 'vue-router';
 
 const codeDigits = ref(['', '', '', '', '', '', '', '']);
+const formError = ref(false);
+const router = useRouter();
+
 watch(codeDigits, (newVal) => {
   const filled = newVal.every(digit => digit !== '');
-  if (filled) {
+  if (filled && !formError.value) {
     emit('ready');
   }
 }, { deep: true });
 
-const emit = defineEmits(['ready']);
+// const emit = defineEmits(['ready']);
 
 const handlePaste = (event, index) => {
   event.preventDefault();
@@ -69,6 +77,18 @@ const handlePaste = (event, index) => {
 const handleInput = (event, index) => {
   const inputElement = event.target;
   const inputLength = inputElement.value.length;
+  const value = inputElement.value;
+  
+  // Only allow numbers and restrict any non-digit input
+  if (!/^\d$/.test(value)) {
+    inputElement.value = '';
+    formError.value = true;
+    return;
+  }
+  
+  // If valid number entered, remove error
+  formError.value = false;
+
   if (inputLength === 1 && index < codeDigits.value.length - 1) {
     const nextInput = inputElement.parentElement.nextElementSibling.querySelector('input[type="text"]');
     if (nextInput) {
@@ -89,4 +109,28 @@ const handleKeyDown = (event, index) => {
     }
   }
 };
+
+const validateForm = () => {
+  const isValid = codeDigits.value.every(digit => /^\d$/.test(digit));
+  if (isValid && codeDigits.value.length === 8) {
+    formError.value = false;
+    emit('ready');
+  } else {
+    formError.value = true;
+  }
+};
+
+const skip = () => {
+  router.push('/dashboard');
+};
+
+const isValidDigit = (index) => {
+  return /^\d$/.test(codeDigits.value[index]);
+};
 </script>
+
+<style scoped>
+input {
+  transition: border-color 0.3s ease;
+}
+</style>

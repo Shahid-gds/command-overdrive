@@ -130,8 +130,10 @@ import { getCookie, setCookie, deleteCookie } from '@/components/utils/cookiesCo
 import axios from 'axios';
 import { useRouter } from 'vue-router';
 import { useApi } from '../api/useApi';
+
 const { getApiUrl } = useApi();
 const apiUrl = getApiUrl();
+
 const email = ref('');
 const password = ref('');
 const passwordVisible = ref(false);
@@ -141,23 +143,14 @@ const processing = ref(false);
 const rememberMe = ref(false);
 const router = useRouter();
 
+
 const togglePasswordVisibility = () => {
-  passwordVisible.value = !passwordVisible.value
+  passwordVisible.value = !passwordVisible.value;
 }
 
-const triggerEnterButton = ref(null);
-
-const triggerEnter = () => {
-  if (triggerEnterButton.value) {
-    triggerEnterButton.value.click();
-  }
-}
-
-emptyFields.value = [];
-
+// Helper to remove empty field error markers
 const removeEmptyField = (fieldName) => {
   const index = emptyFields.value.indexOf(fieldName);
-
   if (index !== -1 && fieldName === 'email' && email.value.trim() !== '') {
     emptyFields.value.splice(index, 1);
   }
@@ -165,10 +158,24 @@ const removeEmptyField = (fieldName) => {
     emptyFields.value.splice(index, 1);
   }
 }
-const setLoginTokenCookie = (token, userId) => {
+
+
+const setLoginTokenCookie = (token, userId, email = null) => {
   setCookie('token', token, 7);
   setCookie('user-id', userId, 7);
+  if (rememberMe.value && email) {
+    setCookie('email', email, 7);
+  }
 }
+
+// Remove the token and email from cookies (log out)
+const removeLoginTokenCookie = () => {
+  deleteCookie('token');
+  deleteCookie('user-id');
+  deleteCookie('email');
+}
+
+// Handle the login request
 const login = async () => {
   if (!email.value || !password.value) {
     responseMessage.value = "Please fill in the required fields!";
@@ -192,10 +199,13 @@ const login = async () => {
         'Content-Type': 'application/json',
       }
     });
+
     responseMessage.value = 'User Logged in successfully!';
     const token = response.data.token;
     const userId = response.data.data.user._id;
-    setLoginTokenCookie(token, userId);
+    const userEmail = response.data.data.user.email;
+    setLoginTokenCookie(token, userId, rememberMe.value ? userEmail : null);
+
     router.replace('/auth-onboarding');
   } catch (error) {
     if (error.response) {
@@ -215,6 +225,8 @@ const login = async () => {
     processing.value = false;
   }
 }
+
+// Auto-clear response message after a timeout
 const responseMessageTimeout = ref(null);
 
 watch(responseMessage, (newValue) => {
@@ -223,11 +235,19 @@ watch(responseMessage, (newValue) => {
     responseMessage.value = '';
   }, 9000);
 });
+
 onUnmounted(() => {
   clearTimeout(responseMessageTimeout.value);
 });
-
+onMounted(() => {
+  const token = getCookie('token');
+  if (token) {
+    email.value = getCookie('email') || '';
+    rememberMe.value = !!getCookie('email');
+  }
+});
 </script>
+
 <style scoped>
 .checkbox-wrapper-45 {
   position: relative;

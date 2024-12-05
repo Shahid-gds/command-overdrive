@@ -15,7 +15,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted, watch } from 'vue';
 import topHeader from '@/views/onboardingSteps/header.vue';
 import stepOne from '@/views/onboardingSteps/stepOne.vue';
 import stepTwo from '@/views/onboardingSteps/stepTwo.vue';

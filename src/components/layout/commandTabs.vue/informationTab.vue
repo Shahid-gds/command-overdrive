@@ -16,37 +16,37 @@
             <div class="flex justify-between">
                 <div>
                     <div class="font-[600] uppercase">Vehicle</div>
-                    <div class="">Make: Cruze</div>
-                    <div class="">Model: CHEVROLET</div>
-                    <div class="">Year: 2017</div>
+                    <div class="">Make: {{ vehicle.make }}</div>
+                    <div class="">Model: {{ vehicle.model }}</div>
+                    <div class="">Year: {{ vehicle.year }}</div>
                 </div>
                 <div>
                     <div class="font-[600] uppercase">License Plate</div>
-                    <div class="">BC3V5J</div>
+                    <div class="">{{ vehicle.license_plate }}</div>
                     <div class="font-[600] uppercase mt-6">Odometer</div>
-                    <div class="">159,426 miles</div>
+                    <div class="">{{ vehicle.mileage}} miles</div>
                 </div>
                </div>
                <div class="flex justify-between">
                 <div class="w-full">
                     <div class="font-[600] uppercase">Nickname</div>
-                    <div class="">Nickname Here</div>
+                    <div class="">{{ vehicle.nickname }}</div>
                 </div>
                </div>
                <div class="flex justify-between mt-5">
                 <div class="w-full">
                     <div class="font-[600] uppercase">VIN</div>
-                    <div class="">3G1BE6SM1HS578778</div>
+                    <div class="">{{ vehicle.vin }}</div>
                 </div>
                 <div class="w-[40%]">
                     <div class="font-[600] uppercase">Engine</div>
-                    <div class="">1.4L I4</div>
+                    <div class="">None</div>
                 </div>
                </div>
                <div class="flex justify-between mt-5">
                 <div class="w-full">
                     <div class="font-[600] uppercase">Body Style</div>
-                    <div class="">Hatchback/Liftback/Notchback</div>
+                    <div class="">{{ vehicle.bodyClass }}</div>
                 </div>
                </div>
          </div>
@@ -65,7 +65,7 @@
             <div class="flex justify-between">
                 <div class="w-full">
                     <div class="font-[600] uppercase">Serial #</div>
-                    <div class="">352602115414804</div>
+                    <div class="">None</div>
                 </div>
                </div>
             <div class="flex justify-between mt-5">
@@ -192,6 +192,53 @@
         </div>
     </section>
 </template>
+
+<script setup>
+import { ref, onMounted, watch } from 'vue';
+import { useRoute } from 'vue-router';
+import axios from 'axios';
+import { useApi } from '@/components/api/useApi';
+  
+  const { getApiUrl } = useApi();
+  const apiUrl = getApiUrl();
+
+// Vehicle details state
+const vehicle = ref({
+  make: '',
+  model: '',
+  year: '',
+  license_plate: '',
+  odometer: '',
+  nickname: '',
+  mileage: '',
+  vin: '',
+  engine: '',
+  bodyStyle: '',
+});
+
+const route = useRoute();
+
+const fetchVehicleData = async () => {
+    const vehicleId = route.params.id; 
+  try {
+    const response = await axios.get(`${apiUrl}/vehicles/me`, {
+      headers: {
+        'Vehicle-ID': vehicleId,
+      },
+    });
+    vehicle.value = response.data.data.vehicle;
+  } catch (error) {
+    console.error("Error fetching vehicle data:", error);
+  }
+};
+onMounted(fetchVehicleData);
+
+watch(() => route.params.id, (newId, oldId)=>{
+    if (newId !== oldId) {
+        fetchVehicleData();
+    }
+})
+</script>
 
 <style scoped>
 ::-webkit-scrollbar {
