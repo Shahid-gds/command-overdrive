@@ -59,7 +59,7 @@ watch(codeDigits, (newVal) => {
   }
 }, { deep: true });
 
-// const emit = defineEmits(['ready']);
+const emit = defineEmits(['ready']);
 
 const handlePaste = (event, index) => {
   event.preventDefault();

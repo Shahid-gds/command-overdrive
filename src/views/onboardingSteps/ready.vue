@@ -62,8 +62,8 @@
           <svg v-if="showPopup" class="animate-tick h-10 w-10 border-2 rounded-full text-green-600 mx-auto mb-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
             <path stroke="currentColor" stroke-width="2" d="M6 12l4 4L18 8" />
           </svg>
-          <h2 class="text-xl font-bold text-green-600">Added Successfully</h2>
-          <p>Your plan has been activated!</p>
+          <h2 class="text-xl font-bold text-green-600">Selected Successfully</h2>
+          <p>Your plan has been Selected!</p>
         </div>
       </div>
 </template>
@@ -75,7 +75,7 @@ import { useRouter } from 'vue-router';
 const router = useRouter();
 const isDropdownOpen = ref(false);
 const selectedOption = ref('Select Plan');
-const options = ref(['Plan One', 'Plan Two', 'Plan Three', 'Plan Four']);
+const options = ref(['Basic - $10.00', 'Advance - $20.00']);
 const showPopup = ref(false);
 
 const toggleDropdown = () => {
@@ -87,7 +87,11 @@ const selectOption = (option) => {
   isDropdownOpen.value = false;
   showPopup.value = true;
   setTimeout(() => {
-    router.push('/dashboard');
+    if (selectedOption.value.includes('Basic')) {
+      router.push('/basic');
+    } else if (selectedOption.value.includes('Advance')) {
+      router.push('/advance');
+    }
   }, 1000);
 };
 

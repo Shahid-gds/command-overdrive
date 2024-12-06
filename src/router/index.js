@@ -100,6 +100,24 @@ const router = createRouter({
       component: () => import("@/components/layout/commandTabs.vue/enterIMEI.vue"),
     },
     {
+      path: "/basic",
+      name: "Basic",
+      // meta: { layout: "Default" },
+      component: () => import("../components/layout/checkout/Basic.vue"),
+    },
+    {
+      path: "/advance",
+      name: "Advance",
+      // meta: { layout: "Default" },
+      component: () => import("../components/layout/checkout/Advance.vue"),
+    },
+    {
+      path: "/select-plan/:id",
+      name: "Plan",
+      // meta: { layout: "Default" },
+      component: () => import("../components/layout/commandTabs.vue/subscriptionPlanning.vue"),
+    },
+    {
       path: "/helicopter-view",
       name: "HelicopterView",
       // meta: { layout: "Default" },

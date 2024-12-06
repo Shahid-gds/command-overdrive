@@ -15,7 +15,7 @@
        </div>
        <div class="relative pb-4">
         <input
-          type="search"
+          type="search" v-model="search"
           class="bg-[white] outline-none p-2 border-2 border-[#B9B9B9] rounded-lg w-full pl-12 placeholder:text-[#000000]"
           placeholder="Search Instailer"  />
         <div class="absolute top-3.5 left-4">
@@ -26,7 +26,7 @@
           <div class="main-rounters h-[76vh] overflow-y-scroll pr-3 pb-2">
             <router-link
               class="flex items-center justify-between space-x-2 py-3 px-1 transition-all duration-300 ease-in-out border-b-[1px] border-[#C2C2C2]"
-              v-for="item in menu"
+              v-for="item in filteredVehicles"
               :key="item.id"
               :to="`/dashboard/${item.id}`"
               :class="{
@@ -35,7 +35,7 @@
                 '' : $route.path !== `/dashboard/${item.id}`,}">
               <div class="relative">
                 <span>
-                  <img class="w-36 border-2 border-[#B9B9B9] rounded-lg" :src="item.carImg">
+                  <img class="w-[12rem] border-2 border-[#B9B9B9] rounded-lg" :src="item.carImg">
                 </span>
                 <span v-if="item.active" class="w-4 h-4 border-white border-2 bg-[#E82031] absolute -top-1 -left-1.5 rounded-full"></span>
                 <span v-if="item.unactive" class="w-4 h-4 border-white border-2 bg-[#2BE31E] absolute -top-1 -left-1.5 rounded-full"></span>
@@ -69,11 +69,19 @@
   
   <script setup>
   import { RouterLink } from "vue-router";
-  import { onMounted, ref } from 'vue';
+  import { onMounted, ref, computed } from 'vue';
   import { useApi } from '@/components/api/useApi';
   
   const { getApiUrl } = useApi();
   const apiUrl = getApiUrl();
+
+  const search = ref("");
+
+  const filteredVehicles = computed(() =>
+  menu.value.filter((vehicle) =>
+    vehicle.name && vehicle.name.toLowerCase().includes(search.value.toLowerCase())
+  )
+);
   
   const menu = ref([]);
   
@@ -92,7 +100,7 @@
           model: item.model, 
           year: item.year,
           // status: item.license_plate,
-          active: '',         
+          active: 'Active',         
           unactive: '',
         }));
       } else {

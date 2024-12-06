@@ -56,7 +56,7 @@ onMounted(async () => {
   className: 'vehicle-icon',
   html: `
     <div style="background-color: white; border: 2px solid black; width: 50px; height: 50px; border-radius: 50%; display: flex; justify-content: center; align-items: center;">
-      <img src="${vehicle.photo || carIconUrl}" alt="${vehicle.nickname}" style="width: 30px; height: 30px;"/>
+      <img src="${vehicle.photo || carIconUrl}" alt="${vehicle.nickname}" style="width: 40px; height: 30px;"/>
     </div>
   `,
   iconSize: [50, 50], 
