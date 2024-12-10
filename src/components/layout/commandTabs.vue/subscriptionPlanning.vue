@@ -61,11 +61,9 @@
         <!-- Popup Modal -->
         <div v-if="showPopup" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
           <div class="bg-white p-10 rounded-lg text-center relative">
-            <svg v-if="showPopup" class="animate-tick h-10 w-10 border-2 rounded-full text-green-600 mx-auto mb-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <svg v-if="showPopup" class="animate-tick h-20 w-20 border-2 rounded-full text-green-600 mx-auto mb-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
               <path stroke="currentColor" stroke-width="2" d="M6 12l4 4L18 8" />
             </svg>
-            <h2 class="text-xl font-bold text-green-600">Selected Successfully</h2>
-            <p>Your plan has been Selected!</p>
           </div>
         </div>
   </template>

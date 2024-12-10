@@ -223,6 +223,60 @@ const paginatedInvoices = computed(() => {
     const start = (currentPage.value - 1) * itemsPerPage;
     return invoices.value.slice(start, start + itemsPerPage);
 });
+
+const users = ref([
+    { 
+        id: 1, 
+        name: 'Jhon Smith', 
+        email: 'jhonsmith@gmail.com',
+        vehicle: 'Vehicle Here...',
+     },
+    { 
+        id: 2, 
+        name: 'Jhon Smith', 
+        email: 'jhonsmith@gmail.com',
+        vehicle: 'Vehicle Here...',
+     },
+    { 
+        id: 3, 
+        name: 'Jhon Smith', 
+        email: 'jhonsmith@gmail.com',
+        vehicle: 'Vehicle Here...',
+     },
+    { 
+        id: 4, 
+        name: 'Jhon Smith', 
+        email: 'jhonsmith@gmail.com',
+        vehicle: 'Vehicle Here...',
+     },
+    { 
+        id: 5, 
+        name: 'Jhon Smith', 
+        email: 'jhonsmith@gmail.com',
+        vehicle: 'Vehicle Here...',
+     },
+    { 
+        id: 6, 
+        name: 'Jhon Smith', 
+        email: 'jhonsmith@gmail.com',
+        vehicle: 'Vehicle Here...',
+     },
+    { 
+        id: 7, 
+        name: 'Jhon Smith', 
+        email: 'jhonsmith@gmail.com',
+        vehicle: 'Vehicle Here...',
+     },
+]);
+const userPerPage = 6;
+const currentUsers = ref(1);
+
+const totalUsers = computed(() => Math.ceil(users.value.length / userPerPage));
+
+const paginatedUsers = computed(() => {
+    const start = (currentUsers.value - 1) * userPerPage;
+    return users.value.slice(start, start + userPerPage);
+});
 </script>
 
 

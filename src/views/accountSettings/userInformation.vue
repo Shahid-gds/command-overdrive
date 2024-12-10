@@ -11,10 +11,17 @@
                             <img v-else class="w-20 h-20 rounded-lg object-cover" src="@/assets/images/default.jpg" alt="">
                             <div v-if="isEditingPhoto" class="absolute  bottom-0 right-0 bg-[white] p-1 rounded-sm cursor-pointer">
                                 <input type="file" @change="handleFileChange" class="hidden" ref="fileInput" />
-                                <svg @click="triggerFileInput" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="#D63D4A" class="size-6">
+                                <svg v-if="!processing" @click="triggerFileInput" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="#D63D4A" class="size-6">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M6.827 6.175A2.31 2.31 0 0 1 5.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 0 0-1.134-.175 2.31 2.31 0 0 1-1.64-1.055l-.822-1.316a2.192 2.192 0 0 0-1.736-1.039 48.774 48.774 0 0 0-5.232 0 2.192 2.192 0 0 0-1.736 1.039l-.821 1.316Z" />
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 12.75a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0ZM18.75 10.5h.008v.008h-.008V10.5Z" />
                                   </svg>  
+                            </div>
+                            <div v-if="processing" class="absolute inset-0 flex items-center justify-center bg-[#1e0d34] opacity-80 z-50">
+                              <span class="relative flex h-16 w-16">
+                                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+                                <span class="relative inline-flex rounded-full h-16 w-16 bg-sky-500 p-2">
+                                </span>
+                              </span>
                             </div>
                         <div v-if="!isEditingPhoto" class="absolute bottom-0 right-0 bg-[white] p-1 rounded-sm">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="#D63D4A" class="size-6">
@@ -22,9 +29,9 @@
                               </svg>                          
                         </div>
                         </div>
-                        <div>
+                        <!-- <div>
                             <h1>Photo</h1>
-                        </div>
+                        </div> -->
                     </div>
                     <div v-if="!isEditingPhoto" @click="togglePhotoEditing" class="flex items-center cursor-pointer">
                         <div> 
@@ -35,12 +42,12 @@
                         <div class="text-[#D63D4A] font-[600] uppercase">Edit</div>
                     </div>
                     <div v-if="isEditingPhoto" class="flex space-x-4 items-center cursor-pointer">
-                            <div @click="togglePhotoEditing" class="bg-[green] p-1 rounded-lg">
+                            <!-- <div @click="togglePhotoEditing" class="bg-[green] p-1 rounded-lg">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="white" class="size-5">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
                                   </svg>
-                            </div>
-                            <div class="bg-[red] p-1 rounded-lg">
+                            </div> -->
+                            <div @click="togglePhotoEditing" class="bg-[red] p-1 rounded-lg">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="white" class="size-5">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
                                   </svg>                                  
@@ -100,10 +107,10 @@
                             <input class="pb-4 w-full bg-transparent outline-none" type="text" placeholder="User Name" v-model="userData.userName" readonly>
                         </div>
                         <div v-if="isEditingUsername">
-                            <input class="p-2 rounded-lg bg-white w-full bg-transparent outline-none" type="text" v-model="userName">
+                            <input class="p-2 rounded-lg bg-white w-full bg-transparent outline-none" type="text" v-model="userData.userName">
                             <div class="flex justify-end py-2 space-x-4 items-center cursor-pointer">
-                                <div  @click="toggleUsernameEditing" class="bg-[#36cb36d7] p-1 px-4 text-white rounded-md">
-                                    save
+                                <div @click.prevent="saveUserName" :disabled="isUserNameProcessing" class="bg-[#36cb36d7] p-1 px-4 text-white rounded-md">
+                                  {{ isUserNameProcessing ? 'Updating...' :  ' Save' }}
                                 </div>
                                 <div class="bg-[#d44a4af3] p-1 px-4 text-white rounded-md">
                                     Cancel                               
@@ -128,11 +135,11 @@
                             <input class="pb-4 w-full bg-transparent outline-none" type="text" placeholder="Phone Number" v-model="userData.phone" readonly>
                         </div>
                         <div v-if="isEditingPhone">
-                            <input class="p-2 rounded-lg bg-white w-full outline-none" type="text" v-model="phone">
+                            <input class="p-2 rounded-lg bg-white w-full outline-none" type="text" placeholder="Phone Number" required v-model="userData.phone">
                             <div class="flex justify-end py-2 space-x-4 items-center cursor-pointer">
-                                <div  @click="togglePhoneEditing" class="bg-[#36cb36d7] p-1 px-4 text-white rounded-md">
-                                    save
-                                </div>
+                              <div @click.prevent="saveUserPhone" :disabled="isPhoneProcessing" class="bg-[#36cb36d7] p-1 px-4 text-white rounded-md">
+                                {{ isPhoneProcessing ? 'Updating...' :  ' Save' }}
+                              </div>
                                 <div class="bg-[#d44a4af3] p-1 px-4 text-white rounded-md">
                                     Cancel                               
                                 </div>                               
@@ -155,12 +162,12 @@
                             <textarea class="pb-3 w-full bg-transparent outline-none" placeholder="Address" v-model="userData.address" rows="2" readonly></textarea>
                         </div>
                         <div v-if="isEditingAddress" class="rounded-lg">
-                            <textarea class="w-full p-2 rounded-lg outline-none bg-white " v-model="address" rows="2"></textarea>
+                            <textarea class="w-full p-2 rounded-lg outline-none bg-white " placeholder="Address" v-model="userData.address" rows="2"></textarea>
                             <div class="flex justify-end py-2 space-x-4 items-center cursor-pointer">
-                                <div  @click="toggleAddressEditing" class="bg-[#36cb36d7] p-1 px-4 text-white rounded-md">
-                                    save
+                                <div  @click="saveUserAddress" :disabled="isAddressProcessing" class="bg-[#36cb36d7] p-1 px-4 text-white rounded-md">
+                                  {{ isAddressProcessing ? 'Updating...' :  ' Save' }}
                                 </div>
-                                <div class="bg-[#d44a4af3] p-1 px-4 text-white rounded-md">
+                                <div @click="toggleAddressEditing" class="bg-[#d44a4af3] p-1 px-4 text-white rounded-md">
                                     Cancel                               
                                 </div>                               
                         </div>
@@ -388,6 +395,99 @@ const getUserData = async () => {
   }
 }
 
+const processing = ref(false);
+const isUserNameProcessing = ref(false);
+const isPasswordProcessing = ref(false);
+const isPhoneProcessing = ref(false);
+const isAddressProcessing = ref(false)
+ 
+const updateUser = async (updatedData) => {
+  const headers = {
+    'user-id' : userId,
+    'Content-Type' : 'multipart/form-data'
+  };
+  try {
+ 
+    const response = await axios.patch(`${apiUrl}/users/updateMe`, updatedData, {headers});
+    if (response.data.sucess) {
+      getUserData();
+    }
+  } catch (error) {
+    console.error('Error updating user:', error);
+  }
+}
+
+const handleFileChange = async (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      processing.value = true;
+        const formData = new FormData();
+        formData.append('photo', file);
+
+        try {
+            const response = await axios.patch(`${apiUrl}/users/updateMe`, formData, {
+                headers: {
+                    'user-id': userId,
+                    'Content-Type': 'multipart/form-data',
+                },
+            });
+
+            userData.profilePhotoUrl = response.data.data.user.photo;
+        } catch (error) {
+            if (error.response) {
+                console.error('Error response:', error.response.data);
+                console.error('Status:', error.response.status);
+                console.error('Headers:', error.response.headers);
+            } else {
+                console.error('Error message:', error.message);
+            }
+        } finally {
+          processing.value = false,
+          isEditingPhoto.value = false
+          window.location.reload();
+        }
+    }
+};
+
+const saveUserName = () => {
+  isUserNameProcessing.value = true;
+  const updatedData = {
+    name: userData.userName,
+  }; 
+  updateUser(updatedData);
+  setTimeout(() => {
+    isUserNameProcessing.value = false;
+    isEditingUsername.value = false;
+  }, 1000);
+}
+const saveUserPhone = () => {
+  isPhoneProcessing.value = true;
+  const updatedData = {
+    phone: userData.phoneNumber,
+  }; 
+  updateUser(updatedData);
+  setTimeout(() => {
+    isPhoneProcessing.value = false;
+    isEditingPhone.value = false;
+  }, 1000);
+}
+const saveUserAddress = () => {
+  isAddressProcessing.value = true;
+  const updatedData = {
+    address: userData.address,
+  }; 
+  updateUser(updatedData);
+  setTimeout(() => {
+    isAddressProcessing.value = false;
+    isEditingAddress.value = false;
+  }, 1000);
+}
+
+function triggerFileInput() {
+    const input = document.querySelector("input[type='file']");
+    input.click();
+}
+
 onMounted(() => {
   getUserData();
 })
@@ -556,18 +656,6 @@ function toggleBillingEditing() {
 function saveBillingInfo() {
   console.log('Saved Billing Info:', billingInfo.value);
   toggleBillingEditing();
-}
-
-function handleFileChange(event) {
-    const file = event.target.files[0];
-    if (file) {
-        photoUrl.value = URL.createObjectURL(file);
-    }
-}
-
-function triggerFileInput() {
-    const input = document.querySelector("input[type='file']");
-    input.click();
 }
 </script>
 

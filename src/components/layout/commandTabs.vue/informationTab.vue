@@ -188,7 +188,34 @@
                 </div>
                </div>
          </div>
-      
+         <div class="flex justify-center mt-4">
+            <button @click="showDeleteModal = true" class="hover-btn text-white p-3 px-8 rounded-lg bg-gradient-to-b from-[#b72b33] bg-[#962d34] font-[700] uppercase">
+              Delete Vehicle
+            </button>
+          </div>
+          
+      <!-- Modal for Confirmation -->
+      <div v-if="showDeleteModal" class="fixed inset-0 bg-gray-500 bg-opacity-50 flex justify-center items-center z-50">
+        <div class="bg-white p-6 rounded-lg shadow-lg w-1/3">
+          <h3 class="text-lg font-semibold mb-4">Are you sure you want to delete this vehicle?</h3>
+          <div class="flex justify-between">
+            <button @click="deleteVehicle" class="px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700">
+              Yes, Delete
+            </button>
+            <button @click="showDeleteModal = false" class="px-6 py-2 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400">
+              No, Cancel
+            </button>
+          </div>
+        </div>
+      </div>
+      <div v-if="showPopup" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+        <div class="bg-white p-10 rounded-lg text-center relative">
+          <svg v-if="showPopup" class="animate-tick h-10 w-10 border-2 rounded-full text-green-600 mx-auto mb-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <path stroke="currentColor" stroke-width="2" d="M6 12l4 4L18 8" />
+          </svg>
+          <h2 class="text-xl font-bold text-green-600">Vehicle Deleted Successfully</h2>
+        </div>
+      </div>
         </div>
     </section>
 </template>
@@ -231,6 +258,28 @@ const fetchVehicleData = async () => {
     console.error("Error fetching vehicle data:", error);
   }
 };
+
+
+const showDeleteModal = ref(false);
+const showPopup = ref(false);
+
+const deleteVehicle = async () => {
+    const vehicleId = route.params.id;
+    try {
+      await axios.delete(`${apiUrl}/vehicles/deleteMe`, {
+        headers: {
+          'Vehicle-ID': vehicleId,
+        },
+      });
+      showDeleteModal.value = false;
+      showPopup.value = true;
+      window.location.reload();
+    } catch (error) {
+      console.error('Error deleting vehicle:', error);
+    }
+  };
+
+
 onMounted(fetchVehicleData);
 
 watch(() => route.params.id, (newId, oldId)=>{
@@ -241,6 +290,22 @@ watch(() => route.params.id, (newId, oldId)=>{
 </script>
 
 <style scoped>
+.animate-tick {
+    animation: tick 0.5s ease-in-out forwards;
+  }
+  
+  @keyframes tick {
+    0% {
+      transform: scale(0);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
 ::-webkit-scrollbar {
     width: 5px;
     background-color: #E8E8E8;
