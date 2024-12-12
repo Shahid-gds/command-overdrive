@@ -1,13 +1,13 @@
 <template>
     <section class="main-bg w-full h-screen flex">
       <div class="w-full">
-       <resetPassword />
+       <forgotPassword />
       </div>
     </section>
   </template>
   
   <script setup>
-  import resetPassword from '@/components/auth/resetPassword.vue';
+  import forgotPassword from '@/components/auth/forgotPasswordForm.vue';
   </script>
   
   <style scoped>

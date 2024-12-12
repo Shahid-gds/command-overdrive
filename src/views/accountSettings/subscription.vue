@@ -186,9 +186,20 @@ const { getApiUrl } = useApi();
 const apiUrl = getApiUrl();
 
 const invoices = ref([]);
+
+const getCookie = (name) => {
+    const cookieValue = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+    return cookieValue ? cookieValue.pop() : '';
+};
+const userId = getCookie('user-id')
+
 const fetchVehicles = async () => {
+  const headers = {
+    'user-id' : userId,
+    'Content-Type' : 'application/json'
+  };
     try {
-      const response = await fetch(`${apiUrl}/vehicles/getMe`);
+      const response = await fetch(`${apiUrl}/vehicles/getMe`, {headers});
       const data = await response.json();
 
       if (data.data && Array.isArray(data.data.vehicles)) {
@@ -205,7 +216,7 @@ const fetchVehicles = async () => {
         console.error('Unexpected API response format. "vehicles" array not found.', data);
       }
     } catch (error) {
-      console.error('Error fetching vehicles:', error);
+      // console.error('Error fetching vehicles:', error);
     }
   };
 

@@ -70,6 +70,12 @@ const emit = defineEmits(['next']);
 const isValidVINLength = (vin) => vin.length === 17;
 const isValidVINFormat = (vin) => /^[A-HJ-NPR-Z0-9]{17}$/.test(vin);
 
+const getCookie = (name) => {
+    const cookieValue = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+    return cookieValue ? cookieValue.pop() : '';
+};
+const userId = getCookie('user-id')
+
 const validateVIN = async () => {
   if (!isValidVINLength(vin.value)) {
     responseMessage.value = 'VIN must be exactly 17 characters long.';
@@ -81,23 +87,30 @@ const validateVIN = async () => {
     return;
   }
 
+  const headers = {
+    'user-id' : userId,
+    'Content-Type' : 'application/json'
+  };
+
   try {
     processing.value = true;
     responseMessage.value = '';
     const response = await axios.post(`${apiUrl}/vehicles/save-vin`, 
-    { vin: vin.value });
+    { vin: vin.value }, 
+    { headers }
+  );
     
     if (response.data.status === 'success') {
-      const vehicleId = response.data.data._id;
-      localStorage.setItem('vId', vehicleId); 
+      const vehicleId = response.data.data.vehicle._id;
+      localStorage.setItem('vId', vehicleId);
       emit('next');
     } else {
       responseMessage.value = response.data.message || 'Invalid VIN. Please check and try again.';
     }
   } catch (error) {
-    console.error('Error during API request:', error);
+    // console.error('Error during API request:', error);
     
-    if (error.response && error.response.data && error.response.data.message === "Vehicle with this VIN already exists.") {
+    if (error.response && error.response.data && error.response.data.message === "You have already saved a vehicle with this VIN.") {
       responseMessage.value = 'Vehicle with this VIN already exists.';
     } else {
       responseMessage.value = 'An error occurred. Please try again later.';

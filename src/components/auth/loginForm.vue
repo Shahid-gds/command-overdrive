@@ -107,7 +107,7 @@
           </div>
           <div class="">
             <router-link
-              :to="{ name: 'ResetPassword' }"
+              :to="{ name: 'ForgotPassword' }"
               class="font-[600] text-[#000000]">Forgot Password?</router-link>
           </div>
         </div>
@@ -160,8 +160,15 @@ const removeEmptyField = (fieldName) => {
 }
 
 
+
+
+
 const setLoginTokenCookie = (token, userId, email = null) => {
-  setCookie('token', token, 7);
+  const persistData = {
+    token: `"${token}"`,
+    _persist: '{"version":-1,"rehydrated":true}'
+  };
+  setCookie('persist:auth', JSON.stringify(persistData), { expires: 7 });
   setCookie('user-id', userId, 7);
   if (rememberMe.value && email) {
     setCookie('email', email, 7);

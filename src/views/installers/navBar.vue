@@ -149,7 +149,7 @@ const toggleUserDropdown = () => {
   isUserDropdownOpen.value = !isUserDropdownOpen.value;
 };
 const logout = () => {
-  document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/';
+  document.cookie = 'persist:auth=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/';
   document.cookie = 'user-id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/';
   router.push({ name: 'Login' });
 };

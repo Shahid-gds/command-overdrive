@@ -1,38 +1,49 @@
 <template>
     <section class="">
         <div class="screen-height max-h-[80vh] overflow-y-scroll pr-4 mt-6">
-           <div class="flex justify-between items-center border-b-[1px] pb-4 border-[#9F9F9F]" >
+          <div class="flex justify-between items-center border-b-[1px] pb-4 border-[#9F9F9F]">
             <div class="uppercase font-[700]">Vehicle Details</div>
-            <div class="flex items-center cursor-pointer">
+            <div v-if="!isEditingVehicleDetail" @click="toggleEditMode" class="flex items-center cursor-pointer">
                 <div>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="#A1A1A1" class="size-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
-                  </svg>
-                  </div>
-                  <div class="text-[#A1A1A1] uppercase font-[600]">Edit</div>
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+                    </svg>
+                </div>
+                <div class="text-[#A1A1A1] uppercase font-[600]">Edit</div>
             </div>
-           </div>
+        </div>
+       
          <div class="mt-5 border-b-[1px] pb-6 border-[#292929]">
-            <div class="flex justify-between">
-                <div>
-                    <div class="font-[600] uppercase">Vehicle</div>
-                    <div class="">Make: {{ vehicle.make }}</div>
-                    <div class="">Model: {{ vehicle.model }}</div>
-                    <div class="">Year: {{ vehicle.year }}</div>
+          <div class="flex justify-between">
+            <div>
+                <div class="font-[600] uppercase">Vehicle</div>
+                <div class="">Make: {{ vehicle.make }}</div>
+                <div class="">Model: {{ vehicle.model }}</div>
+                <div class="">Year: {{ vehicle.year }}</div>
+            </div>
+            <div>
+                <div class="font-[600] uppercase">License Plate</div>
+                <div v-if="isEditingVehicleDetail">
+                    <input v-model="editedVehicle.license_plate" class="p-2 border-2 rounded-lg" />
                 </div>
-                <div>
-                    <div class="font-[600] uppercase">License Plate</div>
-                    <div class="">{{ vehicle.license_plate }}</div>
-                    <div class="font-[600] uppercase mt-6">Odometer</div>
-                    <div class="">{{ vehicle.mileage}} miles</div>
+                <div v-else>{{ vehicle.license_plate }}</div>
+
+                <div class="font-[600] uppercase mt-6">Odometer</div>
+                <div v-if="isEditingVehicleDetail">
+                    <input v-model="editedVehicle.mileage" class="p-2 border-2 rounded-lg" />
                 </div>
-               </div>
-               <div class="flex justify-between">
-                <div class="w-full">
-                    <div class="font-[600] uppercase">Nickname</div>
-                    <div class="">{{ vehicle.nickname }}</div>
-                </div>
-               </div>
+                <div v-else>{{ vehicle.mileage }} miles</div>
+            </div>
+        </div>
+        <div class="flex justify-between">
+          <div class="w-full">
+              <div class="font-[600] uppercase">Nickname</div>
+              <div v-if="isEditingVehicleDetail">
+                  <input v-model="editedVehicle.nickname" class="p-2 border-2 rounded-lg" />
+              </div>
+              <div v-else>{{ vehicle.nickname }}</div>
+          </div>
+      </div>
                <div class="flex justify-between mt-5">
                 <div class="w-full">
                     <div class="font-[600] uppercase">VIN</div>
@@ -49,6 +60,14 @@
                     <div class="">{{ vehicle.bodyClass }}</div>
                 </div>
                </div>
+               <div v-if="isEditingVehicleDetail" class="flex space-x-3 justify-end mt-5">
+                <button @click="saveChanges" :disabled="processing" class="hover-btn text-white p-3 px-8 rounded-lg bg-gradient-to-b from-[#b72b33] bg-[#962d34] font-[700] uppercase">
+                  {{ processing ? 'Updating...' :  ' Save' }}
+                </button>
+                <button @click="cancelEdit" class="hover-btn text-white p-3 px-8 rounded-lg bg-gradient-to-b from-[#b72b33] bg-[#962d34] font-[700] uppercase">
+                    Cancel
+                </button>
+            </div>
          </div>
            <div class="flex justify-between items-center border-b-[1px] pb-4 border-[#9F9F9F] pt-5" >
             <div class="uppercase font-[700]">Device</div>
@@ -229,6 +248,16 @@ import { useApi } from '@/components/api/useApi';
   const { getApiUrl } = useApi();
   const apiUrl = getApiUrl();
 
+  const isEditingVehicleDetail = ref(false);
+  const processing = ref(false);
+
+
+  const editedVehicle = ref({
+    license_plate: '',
+    mileage: '',
+    nickname: ''
+  });
+
 // Vehicle details state
 const vehicle = ref({
   make: '',
@@ -279,6 +308,41 @@ const deleteVehicle = async () => {
     }
   };
 
+  const toggleEditMode = () => {
+    isEditingVehicleDetail.value = !isEditingVehicleDetail.value;
+    if (isEditingVehicleDetail.value) {
+      editedVehicle.value = { ...vehicle.value };
+    }
+  };
+
+  const saveChanges = async () => {
+  const vehicleId = route.params.id;
+  processing.value = true;
+
+  try {
+    await axios.patch(`${apiUrl}/vehicles/updateMe`, editedVehicle.value, {
+      headers: {
+        'Vehicle-ID': vehicleId,
+      },
+    });
+    
+    vehicle.value = { ...editedVehicle.value };
+    isEditingVehicleDetail.value = false;
+    processing.value = false;
+    
+    const currentTab = route.query.tab || 'informationTab';
+
+    window.location.href = `${window.location.pathname}?tab=${currentTab}`;
+  } catch (error) {
+    console.error("Error saving changes:", error);
+  }
+};
+
+
+const cancelEdit = () => {
+  editedVehicle.value = { ...vehicle.value };
+  isEditingVehicleDetail.value = false;
+};
 
 onMounted(fetchVehicleData);
 

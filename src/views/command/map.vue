@@ -19,10 +19,19 @@ const apiUrl = getApiUrl();
 
 
 const mapContainer = ref(null);
+const getCookie = (name) => {
+    const cookieValue = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+    return cookieValue ? cookieValue.pop() : '';
+};
+const userId = getCookie('user-id')
 
 const fetchVehicleData = async () => {
+  const headers = {
+    'user-id' : userId,
+    'Content-Type' : 'application/json'
+  };
   try {
-    const response = await fetch(`${apiUrl}/vehicles/getMe`);
+    const response = await fetch(`${apiUrl}/vehicles/getMe`, {headers});
     const data = await response.json();
     return data.data.vehicles;
   } catch (error) {

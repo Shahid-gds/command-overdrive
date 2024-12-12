@@ -68,10 +68,10 @@
                                 <input class="p-2 rounded-lg bg-white border outline-none w-full" type="password" v-model="confirmPassword" placeholder="Confirm New Password" />
                             </div>
                             <div class="flex justify-end py-2 space-x-4 items-center cursor-pointer">
-                                <div  @click="togglePasswordEditing" class="bg-[#36cb36d7] p-1 px-4 text-white rounded-md">
+                                <div  @click="savePassword" class="bg-[#36cb36d7] p-1 px-4 text-white rounded-md">
                                     save
                                 </div>
-                                <div class="bg-[#d44a4af3] p-1 px-4 text-white rounded-md">
+                                <div @click="togglePasswordEditing"class="bg-[#d44a4af3] p-1 px-4 text-white rounded-md">
                                     Cancel                               
                                 </div>                               
                         </div>
@@ -112,7 +112,7 @@
                                 <div @click.prevent="saveUserName" :disabled="isUserNameProcessing" class="bg-[#36cb36d7] p-1 px-4 text-white rounded-md">
                                   {{ isUserNameProcessing ? 'Updating...' :  ' Save' }}
                                 </div>
-                                <div class="bg-[#d44a4af3] p-1 px-4 text-white rounded-md">
+                                <div @click="toggleUsernameEditing" class="bg-[#d44a4af3] p-1 px-4 text-white rounded-md">
                                     Cancel                               
                                 </div>                               
                         </div>
@@ -140,7 +140,7 @@
                               <div @click.prevent="saveUserPhone" :disabled="isPhoneProcessing" class="bg-[#36cb36d7] p-1 px-4 text-white rounded-md">
                                 {{ isPhoneProcessing ? 'Updating...' :  ' Save' }}
                               </div>
-                                <div class="bg-[#d44a4af3] p-1 px-4 text-white rounded-md">
+                                <div @click="togglePhoneEditing"class="bg-[#d44a4af3] p-1 px-4 text-white rounded-md">
                                     Cancel                               
                                 </div>                               
                         </div>
@@ -387,7 +387,7 @@ const getUserData = async () => {
       userData.photoUrl = getUser.photo || ''
       userData.email = getUser.email || ''
       userData.userName = getUser.name || ''
-      userData.phone = getUser.phoneNumber || ''
+      userData.phone = getUser.phone || ''
       userData.address = getUser.address || ''
     }
   } catch (error) {
@@ -463,7 +463,7 @@ const saveUserName = () => {
 const saveUserPhone = () => {
   isPhoneProcessing.value = true;
   const updatedData = {
-    phone: userData.phoneNumber,
+    phone: userData.phone,
   }; 
   updateUser(updatedData);
   setTimeout(() => {
