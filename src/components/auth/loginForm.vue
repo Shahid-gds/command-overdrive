@@ -11,10 +11,12 @@
       </p>
     </div>
      <div class="with-google flex justify-center pb-6">
-      <button
-      class="hover-btn items-center space-x-2 bg-gradient-to-r from-[#F7AE35] bg-[#BB2E34] px-10 p-3.5 rounded-md shadow-lg hover:bg-gradient-to-l hover:from-[#f7ab35] hover:bg-[#be3333]" >
+      <GoogleLogin
+      :client-id="clientId"
+      :on-success="handleGoogleLogin"
+      class="hover-btn items-center space-x-2 bg-gradient-to-r from-[#F7AE35] bg-[#BB2E34] px-10 p-3.5 rounded-md shadow-lg hover:bg-gradient-to-l hover:from-[#f7ab35] hover:bg-[#be3333]">
       <div class="btn-text text-white uppercase font-[600]">Sign-in With Google</div>
-    </button>
+    </GoogleLogin>
      </div>
       <form action="" class="sing-up-form w-full">
         <div class="pb-4">
@@ -128,6 +130,7 @@
 import { ref, watch, onUnmounted, onMounted } from 'vue';
 import { getCookie, setCookie, deleteCookie } from '@/components/utils/cookiesController';
 import axios from 'axios';
+import { GoogleLogin } from 'vue3-google-login';
 import { useRouter } from 'vue-router';
 import { useApi } from '../api/useApi';
 
@@ -160,6 +163,27 @@ const removeEmptyField = (fieldName) => {
 }
 
 
+
+const clientId = '49566352243-1n0h4d27iqrb67d55mrk3dpiu7m6id91.apps.googleusercontent.com'; 
+
+
+const handleGoogleLogin = async (response) => {
+  processing.value = true;
+  try {
+    const { token } = response.credential;
+    const googleResponse = await authStore.googleLogin(token);
+
+    if (googleResponse.success) {
+      router.push({ name: "Dashboard" });
+    } else {
+      responseMessage.value = googleResponse.message;
+    }
+  } catch (error) {
+    responseMessage.value = error.message || "Google login failed.";
+  } finally {
+    processing.value = false;
+  }
+};
 
 
 
