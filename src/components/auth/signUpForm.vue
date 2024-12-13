@@ -13,13 +13,12 @@
         <p class="text-[#000000] font-[500] pb-4">Create Your Account Now</p>
       </div>
       <div class="with-google flex justify-center pb-6">
-        <button
-          class="hover-btn items-center space-x-2 bg-gradient-to-r from-[#F7AE35] bg-[#BB2E34] px-10 p-3.5 rounded-md shadow-lg hover:bg-gradient-to-l hover:from-[#f7ab35] hover:bg-[#be3333]"
-        >
-          <div class="btn-text text-white uppercase font-[600]">
-            Sign-in With Google
-          </div>
-        </button>
+        <GoogleLogin
+        :client-id="clientId"
+        :on-success="handleGoogleLogin"
+        class="hover-btn cursor-pointer items-center space-x-2 bg-gradient-to-r from-[#F7AE35] bg-[#BB2E34] px-10 p-3.5 rounded-md shadow-lg hover:bg-gradient-to-l hover:from-[#f7ab35] hover:bg-[#be3333]">
+        <div class="btn-text text-white uppercase font-[600]">Sign-in With Google</div>
+      </GoogleLogin>
       </div>
       <div class="sing-option pb-3 text-center">
         <span class="text-[#6b6b6b] font-[500] text-xl">OR-</span>
@@ -229,6 +228,7 @@ import { onUnmounted, ref, watch } from "vue";
 import axios from "axios";
 import codeVerification from "@/views/codeVerification.vue";
 import { useApi } from "@/components/api/useApi";
+import { GoogleLogin } from 'vue3-google-login';
 const { getApiUrl } = useApi();
 const apiUrl = getApiUrl();
 
@@ -297,6 +297,28 @@ const setCookie = (name, value, days) => {
   }
   document.cookie = name + "=" + (value || "")  + expires + "; path=/";
 }
+
+const clientId = '49566352243-1n0h4d27iqrb67d55mrk3dpiu7m6id91.apps.googleusercontent.com'; 
+
+
+const handleGoogleLogin = async (response) => {
+  processing.value = true;
+  try {
+    const { token } = response.credential;
+    const googleResponse = await authStore.googleLogin(token);
+
+    if (googleResponse.success) {
+      router.push({ name: "Dashboard" });
+    } else {
+      responseMessage.value = googleResponse.message;
+    }
+  } catch (error) {
+    responseMessage.value = error.message || "Google login failed.";
+  } finally {
+    processing.value = false;
+  }
+};
+
 
 const signup = async () => {
   if (

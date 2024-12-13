@@ -14,7 +14,7 @@
       <GoogleLogin
       :client-id="clientId"
       :on-success="handleGoogleLogin"
-      class="hover-btn items-center space-x-2 bg-gradient-to-r from-[#F7AE35] bg-[#BB2E34] px-10 p-3.5 rounded-md shadow-lg hover:bg-gradient-to-l hover:from-[#f7ab35] hover:bg-[#be3333]">
+      class="hover-btn cursor-pointer items-center space-x-2 bg-gradient-to-r from-[#F7AE35] bg-[#BB2E34] px-10 p-3.5 rounded-md shadow-lg hover:bg-gradient-to-l hover:from-[#f7ab35] hover:bg-[#be3333]">
       <div class="btn-text text-white uppercase font-[600]">Sign-in With Google</div>
     </GoogleLogin>
      </div>
